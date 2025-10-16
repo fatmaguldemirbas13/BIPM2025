@@ -1,77 +1,121 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akademik Yolculuk Haritam</title>
+    <title>Academic Journey Map - Fatmagül</title>
     <style>
-        /* Genel stil: Sayfanın kenar boşluklarını sıfırla ve yazı tipini ayarla */
+        /* BASE STYLES */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4; /* Açık gri arka plan */
+            background-color: #f8f8f8; /* Light background */
             color: #333;
-        }
-        /* Tüm içeriği ortalamak ve genişliğini sınırlamak için bir kutu */
-        .container {
-            max-width: 900px; 
-            margin: 20px auto; /* Üstten ve alttan 20px boşluk, yanlardan otomatik ortalama */
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hafif gölge */
-        }
-        /* Başlık stili */
-        h1 {
-            color: #007bff; /* Mavi renkli başlık */
-            text-align: center;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #007bff;
-        }
-        /* Harita kapsayıcısı: Burası haritanın sabit yüksekliğini belirler */
-        .harita-konteyneri {
-            width: 100%;
-            height: 500px; /* Haritanın yüksekliğini 500 piksel olarak ayarlar */
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            overflow: hidden; /* Kenarları yuvarlatmak için */
-            margin: 25px 0; /* Haritanın üst ve altına boşluk */
-        }
-        /* Paragraf stili */
-        p {
             line-height: 1.6;
-            margin-bottom: 15px;
+        }
+
+        /* CONTAINER: Limits the page width and centers the content */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* HEADER */
+        h1 {
+            color: #007bff;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* TWO-COLUMN LAYOUT USING FLEXBOX */
+        .content-wrapper {
+            display: flex; /* Enables Flexbox */
+            flex-wrap: wrap; /* Allows columns to wrap into one stack on small screens */
+            gap: 30px; /* Space between the text and the map */
+        }
+
+        /* LEFT COLUMN (TEXT) */
+        .text-column {
+            flex: 1; /* Allows this column to grow/shrink */
+            min-width: 300px; /* Ensures it doesn't get too narrow */
+        }
+
+        /* RIGHT COLUMN (MAP) */
+        .map-column {
+            flex: 1; 
+            min-width: 400px; /* Ensures the map has enough space */
+            height: 550px; /* Sets a fixed height for the map container */
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        /* MEDIA QUERY for mobile devices: Stacks columns vertically */
+        @media (max-width: 850px) {
+            .content-wrapper {
+                flex-direction: column; /* Stacks items vertically on smaller screens */
+            }
+            .map-column {
+                min-width: 100%; /* Map takes full width */
+                height: 400px; /* Smaller map height on mobile */
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Fatmagül'ün Akademik Yolculuk Haritası</h1>
         
-        <p>
-            Merhaba! Bu harita, benim eğitim hayatım boyunca gerçekleştirdiğim akademik ve coğrafi yolculuğumdaki önemli durakları göstermektedir. Yolculuğumun ana vatanım İstanbul'da başlayıp, Ankara ve Prag'daki deneyimlerle zenginleşerek, gelecekteki durağım Berlin'e kadar nasıl uzandığını görebilirsiniz.
-        </p>
+        <h1>My Academic Journey: A Geographical Map</h1>
         
-        <p>
-            Lütfen haritadaki her bir mavi işaretçiye (marker) tıklayarak o durakla ilgili detaylı bilgileri (doğum yeri, lisans, Erasmus, yüksek lisans) okuyun.
-        </p>
+        <div class="content-wrapper">
+            
+            <div class="text-column">
+                <h2>Welcome to My Educational Path</h2>
+                
+                <p>
+                    This interactive map visualizes the key geographical locations that have shaped my academic and professional career. From my early studies in Turkey to international experiences abroad, each marker represents a significant step in my educational journey.
+                </p>
+                
+                <p>
+                    The journey starts in **Istanbul**, my hometown, where I completed my initial university studies. I then moved to **Ankara** for a pivotal phase of my education. Following this, I had the invaluable experience of an Erasmus semester in **Prague, Czech Republic**.
+                </p>
+                
+                <p>
+                    Currently, I am focused on my Master's studies, and the map highlights the location of my next major step. Click on the markers to reveal detailed information about the time period and the specific experience at each location.
+                </p>
 
-        <div class="harita-konteyneri">
-            <iframe 
-                src="academic_journey_map.html" 
-                width="100%" 
-                height="100%" 
-                frameborder="0" 
-                style="border:0;"
-                loading="lazy">
-            </iframe>
+                <h3>Legend:</h3>
+                <ul>
+                    <li><strong>Blue Marker:</strong> Completed or current degree/experience.</li>
+                    <li><strong>Red Marker:</strong> Planned future destination (e.g., higher education).</li>
+                </ul>
+            </div>
+            
+            <div class="map-column">
+                <iframe 
+                    src="academic_journey_map.html" 
+                    width="100%" 
+                    height="100%" 
+                    frameborder="0" 
+                    style="border:0;"
+                    loading="lazy">
+                </iframe>
+            </div>
+            
         </div>
         
-        <p style="text-align: center; font-size: 0.9em; color: #6c757d;">
-            Bu sayfa Python'da Folium kütüphanesi ile oluşturulmuş ve GitHub Pages üzerinden yayınlanmıştır.
+        <p style="text-align: center; margin-top: 30px; font-size: 0.85em; color: #6c757d;">
+            Map generated using the Python Folium library and hosted via GitHub Pages.
         </p>
+
     </div>
 
 </body>
