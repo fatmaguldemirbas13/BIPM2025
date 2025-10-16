@@ -5,32 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akademik Yolculuk Haritam</title>
     <style>
-        /* Varsayılan tarayıcı kenar boşluklarını kaldırır */
+        /* Genel stil: Sayfanın kenar boşluklarını sıfırla ve yazı tipini ayarla */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px; /* İçerik için biraz boşluk */
-            background-color: #f4f4f4; /* Arka plan rengi */
+            padding: 0;
+            background-color: #f4f4f4; /* Açık gri arka plan */
+            color: #333;
         }
+        /* Tüm içeriği ortalamak ve genişliğini sınırlamak için bir kutu */
         .container {
-            max-width: 900px; /* İçeriği ortalar */
-            margin: 0 auto;
+            max-width: 900px; 
+            margin: 20px auto; /* Üstten ve alttan 20px boşluk, yanlardan otomatik ortalama */
             background-color: white;
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Hafif gölge */
         }
+        /* Başlık stili */
         h1 {
-            color: #333;
-            border-bottom: 2px solid #ccc;
+            color: #007bff; /* Mavi renkli başlık */
+            text-align: center;
             padding-bottom: 10px;
+            border-bottom: 2px solid #007bff;
         }
+        /* Harita kapsayıcısı: Burası haritanın sabit yüksekliğini belirler */
         .harita-konteyneri {
-            /* Haritanın görüneceği sabit veya göreceli yüksekliği belirleriz */
             width: 100%;
-            height: 500px; /* Harita için ideal bir yükseklik */
-            border: 1px solid #ccc; /* Harita çerçevesi */
-            margin-top: 20px;
+            height: 500px; /* Haritanın yüksekliğini 500 piksel olarak ayarlar */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden; /* Kenarları yuvarlatmak için */
+            margin: 25px 0; /* Haritanın üst ve altına boşluk */
+        }
+        /* Paragraf stili */
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -39,9 +50,13 @@
     <div class="container">
         <h1>Fatmagül'ün Akademik Yolculuk Haritası</h1>
         
-        <p>Merhaba! Aşağıdaki interaktif harita, benim eğitim ve kariyer yolculuğumdaki önemli durakları göstermektedir. İstanbul'da başlayan bu yolculuk, Ankara ve Prag üzerinden Berlin'e uzanıyor.</p>
+        <p>
+            Merhaba! Bu harita, benim eğitim hayatım boyunca gerçekleştirdiğim akademik ve coğrafi yolculuğumdaki önemli durakları göstermektedir. Yolculuğumun ana vatanım İstanbul'da başlayıp, Ankara ve Prag'daki deneyimlerle zenginleşerek, gelecekteki durağım Berlin'e kadar nasıl uzandığını görebilirsiniz.
+        </p>
         
-        <p>Haritadaki işaretçilere tıklayarak her bir durak hakkında daha fazla bilgi edinebilirsiniz.</p>
+        <p>
+            Lütfen haritadaki her bir mavi işaretçiye (marker) tıklayarak o durakla ilgili detaylı bilgileri (doğum yeri, lisans, Erasmus, yüksek lisans) okuyun.
+        </p>
 
         <div class="harita-konteyneri">
             <iframe 
@@ -54,7 +69,9 @@
             </iframe>
         </div>
         
-        <p style="text-align: center; margin-top: 20px; font-size: 0.8em; color: #666;">Bu sayfa Folium ve GitHub Pages kullanılarak yayınlanmıştır.</p>
+        <p style="text-align: center; font-size: 0.9em; color: #6c757d;">
+            Bu sayfa Python'da Folium kütüphanesi ile oluşturulmuş ve GitHub Pages üzerinden yayınlanmıştır.
+        </p>
     </div>
 
 </body>
