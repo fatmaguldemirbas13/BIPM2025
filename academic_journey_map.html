@@ -1,178 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fatmagül’s Academic Story</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Journey Map - Fatmagül</title>
+    <style>
+        /* BASE STYLES */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8; /* Light background */
+            color: #333;
+            line-height: 1.6;
+        }
 
-  <style>
-    /* ===== BASE ===== */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: #fafafa;
-      color: #333;
-      line-height: 1.6;
-    }
+        /* CONTAINER: Limits the page width and centers the content */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
 
-    a {
-      color: #0066cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+        /* HEADER */
+        h1 {
+            color: #007bff;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
 
-    .container {
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
+        /* TWO-COLUMN LAYOUT USING FLEXBOX */
+        .content-wrapper {
+            display: flex; /* Enables Flexbox */
+            flex-wrap: wrap; /* Allows columns to wrap into one stack on small screens */
+            gap: 30px; /* Space between the text and the map */
+        }
 
-    h1 {
-      font-size: 2.4rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #005cbf;
-      text-align: center;
-    }
+        /* LEFT COLUMN (TEXT) */
+        .text-column {
+            flex: 1; /* Allows this column to grow/shrink */
+            min-width: 300px; /* Ensures it doesn't get too narrow */
+        }
 
-    .subtitle {
-      font-size: 1rem;
-      color: #666;
-      text-align: center;
-      margin-bottom: 40px;
-    }
+        /* RIGHT COLUMN (MAP) */
+        .map-column {
+            flex: 1; 
+            min-width: 400px; /* Ensures the map has enough space */
+            height: 550px; /* Sets a fixed height for the map container */
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
 
-    section {
-      margin-bottom: 50px;
-    }
-
-    h2 {
-      font-size: 1.6rem;
-      font-weight: 500;
-      margin-bottom: 15px;
-      color: #222;
-    }
-
-    p {
-      font-size: 1rem;
-      color: #444;
-      margin-bottom: 15px;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    ul li {
-      position: relative;
-      padding-left: 20px;
-      margin-bottom: 12px;
-    }
-    ul li::before {
-      content: "▹";
-      position: absolute;
-      left: 0;
-      color: #0066cc;
-      font-weight: bold;
-    }
-
-    strong {
-      color: #0066cc;
-    }
-
-    /* ===== MAP SECTION ===== */
-    .map-wrapper {
-      width: 100%;
-      height: 400px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      margin-top: 30px;
-    }
-    .map-wrapper iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #777;
-      margin: 80px 0 20px;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      h2 {
-        font-size: 1.4rem;
-      }
-      .map-wrapper {
-        height: 300px;
-      }
-    }
-  </style>
+        /* MEDIA QUERY for mobile devices: Stacks columns vertically */
+        @media (max-width: 850px) {
+            .content-wrapper {
+                flex-direction: column; /* Stacks items vertically on smaller screens */
+            }
+            .map-column {
+                min-width: 100%; /* Map takes full width */
+                height: 400px; /* Smaller map height on mobile */
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="container">
-    <header>
-      <h1>Fatmagül's Story</h1>
-      <p class="subtitle">From Istanbul to Berlin — My Academic & Professional Journey</p>
-    </header>
 
-    <section id="about">
-      <h2>Current Position</h2>
-      <p>
-        Berlin, Germany  
-        <br />
-        Master’s Student in Business Intelligence & Process Management  
-        <br />
-        Berlin School of Economics & Law  
-      </p>
-      <p>
-        Working Student in Payroll & Controlling – Iberdrola Deutschland GmbH  
-      </p>
-      <p>
-        <a href="https://www.linkedin.com">LinkedIn Profile</a> | <a href="#">Personal Website</a>
-      </p>
-    </section>
+    <div class="container">
+        
+        <h1>My Academic Journey: A Geographical Map</h1>
+        
+        <div class="content-wrapper">
+            
+            <div class="text-column">
+                <h2>Welcome to My Educational Path</h2>
+                
+                <p>
+                    This interactive map visualizes the key geographical locations that have shaped my academic and professional career. From my early studies in Turkey to international experiences abroad, each marker represents a significant step in my educational journey.
+                </p>
+                
+                <p>
+                    The journey starts in **Istanbul**, my hometown, where I completed my initial university studies. I then moved to **Ankara** for a pivotal phase of my education. Following this, I had the invaluable experience of an Erasmus semester in **Prague, Czech Republic**.
+                </p>
+                
+                <p>
+                    Currently, I am focused on my Master's studies, and the map highlights the location of my next major step. Click on the markers to reveal detailed information about the time period and the specific experience at each location.
+                </p>
 
-    <section id="journey">
-      <h2>Academic Journey & Milestones</h2>
-      <ul>
-        <li><strong>Istanbul, Turkey:</strong> Born & early education</li>
-        <li><strong>Ankara, Turkey:</strong> B.Sc. in MIS (2019–2024)</li>
-        <li><strong>Prague, Czech Republic:</strong> Erasmus Exchange (2023)</li>
-        <li><strong>Ankara, Turkey:</strong> Internship at United Nations (2024)</li>
-        <li><strong>Berlin, Germany:</strong> M.Sc. in Business Intelligence & Process Management (2025–2027)</li>
-      </ul>
-    </section>
+                <h3>Legend:</h3>
+                <ul>
+                    <li><strong>Blue Marker:</strong> Completed or current degree/experience.</li>
+                    <li><strong>Red Marker:</strong> Planned future destination (e.g., higher education).</li>
+                </ul>
+            </div>
+            
+            <div class="map-column">
+                <iframe 
+                    src="academic_journey_map.html" 
+                    width="100%" 
+                    height="100%" 
+                    frameborder="0" 
+                    style="border:0;"
+                    loading="lazy">
+                </iframe>
+            </div>
+            
+        </div>
+        
+        <p style="text-align: center; margin-top: 30px; font-size: 0.85em; color: #6c757d;">
+            Map generated using the Python Folium library and hosted via GitHub Pages.
+        </p>
 
-    <section id="map">
-      <h2>Map & Locations</h2>
-      <!-- 🔧 DÜZELTİLMİŞ KISIM -->
-      <div class="map-wrapper">
-        <iframe src="map.html" loading="lazy"></iframe>
-      </div>
-      <p style="margin-top: 15px; font-size: 0.95rem; color: #666;">
-        Click on the map markers to explore each milestone in detail.
-      </p>
-    </section>
+    </div>
 
-    <footer>
-      Map created using <strong>Python Folium</strong> and hosted via GitHub Pages.
-    </footer>
-  </div>
 </body>
 </html>
