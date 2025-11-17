@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fatmagül'ün Akademik Yolculuğu 🗺️</title>
     
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -14,373 +16,222 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
     
-            <meta name="viewport" content="width=device-width,
-                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-            <style>
-                #map_72c4811dbfae725b579be0ad5c01eedc {
-                    position: relative;
-                    width: 100.0%;
-                    height: 100.0%;
-                    left: 0.0%;
-                    top: 0.0%;
-                }
-                .leaflet-container { font-size: 1rem; }
-            </style>
+    <style>
+        :root {
+            --main-color: #0077b6; /* Profesyonel Deniz Mavisi */
+            --bg-color: #f8f9fa;
+        }
 
-            <style>html, body {
-                width: 100%;
-                height: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            </style>
-
-            <style>#map {
-                position:absolute;
-                top:0;
-                bottom:0;
-                right:0;
-                left:0;
-                }
-            </style>
-
-            <script>
-                L_NO_TOUCH = false;
-                L_DISABLE_3D = false;
-            </script>
-
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background-color: var(--main-color);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 15px;
+        }
+        .content-section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            transition: transform 0.3s;
+        }
+        .content-section:hover {
+            transform: translateY(-3px);
+        }
+        #map_container {
+            height: 550px; 
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 0;
+        }
+        #map_72c4811dbfae725b579be0ad5c01eedc {
+            width: 100%;
+            height: 100%;
+        }
+        h1, h2, h3 {
+            color: var(--main-color);
+            font-weight: 600;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--main-color);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        .current-position {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #495057;
+        }
+        .milestone-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .milestone-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .milestone-list li:last-child {
+            border-bottom: none;
+        }
         
+        /* Harita Ayarları */
+        .leaflet-container { font-size: 0.9rem; } 
+        html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+    </style>
 </head>
 <body>
-    
-    
-            <div class="folium-map" id="map_72c4811dbfae725b579be0ad5c01eedc" ></div>
-        
-</body>
-<script>
-    
-    
-            var map_72c4811dbfae725b579be0ad5c01eedc = L.map(
-                "map_72c4811dbfae725b579be0ad5c01eedc",
-                {
-                    center: [40.0, 0.0],
-                    crs: L.CRS.EPSG3857,
-                    ...{
-  "zoom": 2.3,
-  "zoomControl": true,
-  "preferCanvas": false,
-}
 
-                }
-            );
+    <div class="header">
+        <h1>Fatmagül'ün Akademik ve Kişisel Yolculuğu 🗺️</h1>
+        <p class="lead">Veri, teknoloji ve süreç yönetiminde küresel deneyim.</p>
+    </div>
 
+    <div class="container">
+        <div class="row">
             
+            <div class="col-lg-6">
+                <div class="content-section text-center">
+                    <img src="profil_foto.jpg" class="profile-img" alt="Fatmagül Demribaş Profil Fotoğrafı">
+                    <h2 class="mt-3" style="color: #333;">Merhaba, ben Fatmagül! 👋</h2>
+                    <p class="text-muted">İş Zekası ve Süreç Yönetimi alanında uzmanlaşan, teknoloji ve veriye tutkulu bir profesyonelim.</p>
+                    
+                    <hr>
+                    
+                    <div class="current-position">
+                        <i class="fas fa-map-marker-alt me-2" style="color: var(--main-color);"></i> Berlin, Almanya <br>
+                        <i class="fas fa-briefcase me-2" style="color: var(--main-color);"></i> **Payroll & Controlling Working Student**
+                    </div>
+                    <a href="https://www.linkedin.com" class="btn btn-outline-primary btn-sm mt-3"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+                
+                <div class="content-section">
+                    <h3>📍 Yolculuk Kilometre Taşları</h3>
+                    <ul class="milestone-list">
+                        <li>
+                            <i class="fas fa-house-user me-2" style="color: var(--main-color);"></i>
+                            <strong>İstanbul, Türkiye (Başlangıç)</strong>
+                            <p class="mb-0 text-secondary">Kültürel çeşitliliğin bakış açımı şekillendirdiği başlangıç noktam.</p>
+                        </li>
+                        <li>
+                            <i class="fas fa-graduation-cap me-2" style="color: var(--main-color);"></i>
+                            <strong>Ankara, Türkiye (2019 – 2024)</strong>
+                            <p class="mb-0 text-secondary">MIS Lisans: Veri analizi ve iş süreçleri teknolojilerine odaklandım.</p>
+                        </li>
+                        <li>
+                            <i class="fas fa-plane me-2" style="color: var(--main-color);"></i>
+                            <strong>Prag, Çek Cumhuriyeti (2023)</strong>
+                            <p class="mb-0 text-secondary">Erasmus: Uluslararası bir ortamda kültürel adaptasyon yeteneğimi güçlendirdim.</p>
+                        </li>
+                        <li>
+                            <i class="fas fa-chart-bar me-2" style="color: var(--main-color);"></i>
+                            <strong>Berlin, Almanya (2025 – 2027)</strong>
+                            <p class="mb-0 text-secondary">BIPM Yüksek Lisansı: Karmaşık iş verilerini eyleme dönüştürülebilir içgörülere çevirme uzmanlığı.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="content-section" id="map_container" style="padding: 0;">
+                    <div class="folium-map" id="map_72c4811dbfae725b579be0ad5c01eedc" ></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <script>
+        L_NO_TOUCH = false;
+        L_DISABLE_3D = false;
+        
+        var map_72c4811dbfae725b579be0ad5c01eedc = L.map(
+            "map_72c4811dbfae725b579be0ad5c01eedc",
+            {
+                center: [40.0, 0.0],
+                crs: L.CRS.EPSG3857,
+                zoom: 2.3,
+                zoomControl: true,
+                preferCanvas: false,
+            }
+        );
+        var tile_layer_b646d4f5e57921a5f87f003966d1b2ff = L.tileLayer(
+            "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+            {
+                minZoom: 0,
+                maxZoom: 18,
+                maxNativeZoom: 18,
+                noWrap: false,
+                attribution: "\u00a9 OpenStreetMap contributors \u00a9 CARTO",
+                subdomains: "abc",
+                detectRetina: false,
+                tms: false,
+                opacity: 1,
+            }
+        );
+        tile_layer_b646d4f5e57921a5f87f003966d1b2ff.addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        
+        // --- İKON TANIMLARI (ÖZELLEŞTİRİLMİŞ) ---
+        var icon_istanbul = L.AwesomeMarkers.icon({ "markerColor": "blue", "iconColor": "white", "icon": "house-user", "prefix": "fa", "extraClasses": "fa-rotate-0", });
+        var icon_ankara = L.AwesomeMarkers.icon({ "markerColor": "blue", "iconColor": "white", "icon": "graduation-cap", "prefix": "fa", "extraClasses": "fa-rotate-0", });
+        var icon_prag = L.AwesomeMarkers.icon({ "markerColor": "blue", "iconColor": "white", "icon": "plane", "prefix": "fa", "extraClasses": "fa-rotate-0", });
+        var icon_berlin = L.AwesomeMarkers.icon({ "markerColor": "darkblue", "iconColor": "white", "icon": "chart-bar", "prefix": "fa", "extraClasses": "fa-rotate-0", });
 
-        
-    
-            var tile_layer_b646d4f5e57921a5f87f003966d1b2ff = L.tileLayer(
-                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-                {
-  "minZoom": 0,
-  "maxZoom": 18,
-  "maxNativeZoom": 18,
-  "noWrap": false,
-  "attribution": "\u00a9 OpenStreetMap contributors \u00a9 CARTO",
-  "subdomains": "abc",
-  "detectRetina": false,
-  "tms": false,
-  "opacity": 1,
-}
+        // --- İSTANBUL MARKERI ---
+        var marker_istanbul = L.marker([41.0082, 28.9784]).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        marker_istanbul.bindPopup(L.popup({"maxWidth": "100%"}).setContent($(`<div style="width: 100%; height: 100%;">I was born in İstanbul</div>`)[0]));
+        marker_istanbul.bindTooltip(`<div>İstanbul, Turkey</div>`, {"sticky": true});
+        marker_istanbul.setIcon(icon_istanbul);
 
-            );
-        
-    
-            tile_layer_b646d4f5e57921a5f87f003966d1b2ff.addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-            var marker_8ca69c2294ffe6fdd3a16a7cd0d0e7de = L.marker(
-                [41.0082, 28.9784],
-                {
-}
-            ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-            var icon_be8663732ebe98cb1c805628868ec50c = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "blue",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_d7d95039c3808125706a8f3be42f5159 = L.popup({
-  "maxWidth": "100%",
-});
+        // --- ANKARA MARKERI ---
+        var marker_ankara = L.marker([39.9334, 32.8597]).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        marker_ankara.bindPopup(L.popup({"maxWidth": "100%"}).setContent($(`<div style="width: 100%; height: 100%;">Bachelor (2019-2024) 🎓</div>`)[0]));
+        marker_ankara.bindTooltip(`<div>Ankara, Turkey</div>`, {"sticky": true});
+        marker_ankara.setIcon(icon_ankara);
 
-        
-            
-                var html_2c0d05f63a2894a9d610f1275b986b60 = $(`<div id="html_2c0d05f63a2894a9d610f1275b986b60" style="width: 100.0%; height: 100.0%;">I was born in İstanbul</div>`)[0];
-                popup_d7d95039c3808125706a8f3be42f5159.setContent(html_2c0d05f63a2894a9d610f1275b986b60);
-            
-        
+        // --- PRAG MARKERI ---
+        var marker_prag = L.marker([50.0755, 14.437]).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        marker_prag.bindPopup(L.popup({"maxWidth": "100%"}).setContent($(`<div style="width: 100%; height: 100%;">Exchange student at Prague (2023)🧠</div>`)[0]));
+        marker_prag.bindTooltip(`<div>Prague, Czech Republic</div>`, {"sticky": true});
+        marker_prag.setIcon(icon_prag);
 
-        marker_8ca69c2294ffe6fdd3a16a7cd0d0e7de.bindPopup(popup_d7d95039c3808125706a8f3be42f5159)
-        ;
+        // --- BERLİN MARKERI ---
+        var marker_berlin = L.marker([52.52, 13.405]).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        marker_berlin.bindPopup(L.popup({"maxWidth": "100%"}).setContent($(`<div style="width: 100%; height: 100%;">Master of BIPM (2025-2027) 💼</div>`)[0]));
+        marker_berlin.bindTooltip(`<div>Berlin, Germany</div>`, {"sticky": true});
+        marker_berlin.setIcon(icon_berlin);
 
-        
-    
-    
-            marker_8ca69c2294ffe6fdd3a16a7cd0d0e7de.bindTooltip(
-                `<div>
-                     İstanbul, Turkey
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_8ca69c2294ffe6fdd3a16a7cd0d0e7de.setIcon(icon_be8663732ebe98cb1c805628868ec50c);
-            
-    
-            var marker_7ea2569dbf933b9386430938c28fa428 = L.marker(
-                [39.9334, 32.8597],
-                {
-}
-            ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-            var icon_fafa9902f5223b3bd1f300c6847aa4dc = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "blue",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_72f05cd13bb5985853baff84720f175b = L.popup({
-  "maxWidth": "100%",
-});
+        // --- ÇİZGİLER (ORİJİNAL KODDAN ALINDI) ---
+        var poly_line_2d587549f7f0f3bb08d6930484abf3d0 = L.polyline(
+            [[41.0082, 28.9784], [40.9334, 32.8597]], // İstanbul'dan Ankara'ya basitleştirilmiş
+            {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+        ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
 
-        
-            
-                var html_48ca5d5f137fb5879c201c70852f4c4c = $(`<div id="html_48ca5d5f137fb5879c201c70852f4c4c" style="width: 100.0%; height: 100.0%;">Bachelor (2019-192024) 🎓</div>`)[0];
-                popup_72f05cd13bb5985853baff84720f175b.setContent(html_48ca5d5f137fb5879c201c70852f4c4c);
-            
-        
+        var poly_line_634fea132a8265ace1e78a1af85bc2b5 = L.polyline(
+            [[39.9334, 32.8597], [50.0755, 14.437]], // Ankara'dan Prag'a basitleştirilmiş
+            {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+        ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
 
-        marker_7ea2569dbf933b9386430938c28fa428.bindPopup(popup_72f05cd13bb5985853baff84720f175b)
-        ;
-
+        var poly_line_9b16fcee781e7c6d8f43e9639a3c166c = L.polyline(
+            [[50.0755, 14.437], [52.52, 13.405]], // Prag'dan Berlin'e basitleştirilmiş
+            {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+        ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
         
-    
-    
-            marker_7ea2569dbf933b9386430938c28fa428.bindTooltip(
-                `<div>
-                     Ankara, Turkey
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_7ea2569dbf933b9386430938c28fa428.setIcon(icon_fafa9902f5223b3bd1f300c6847aa4dc);
-            
-    
-            var marker_496a00957f953e0b7eb870b546d5e84c = L.marker(
-                [50.0755, 14.437],
-                {
-}
-            ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-            var icon_897a98bb8dfb3ccdd5d822f9b062a479 = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "blue",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_983f413c9a7bbe2403f298de7bc11fb8 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_6fd025261e8891a945929c349f663b16 = $(`<div id="html_6fd025261e8891a945929c349f663b16" style="width: 100.0%; height: 100.0%;">Exchange student at Prague (2023-2023)🧠</div>`)[0];
-                popup_983f413c9a7bbe2403f298de7bc11fb8.setContent(html_6fd025261e8891a945929c349f663b16);
-            
-        
-
-        marker_496a00957f953e0b7eb870b546d5e84c.bindPopup(popup_983f413c9a7bbe2403f298de7bc11fb8)
-        ;
-
-        
-    
-    
-            marker_496a00957f953e0b7eb870b546d5e84c.bindTooltip(
-                `<div>
-                     Prague, Czech Republic
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_496a00957f953e0b7eb870b546d5e84c.setIcon(icon_897a98bb8dfb3ccdd5d822f9b062a479);
-            
-    
-            var marker_7b972004addd6cda2ecc486451b3a048 = L.marker(
-                [52.52, 13.405],
-                {
-}
-            ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-            var icon_0923cc1499b4f40a6b6a5facde7e235d = L.AwesomeMarkers.icon(
-                {
-  "markerColor": "blue",
-  "iconColor": "white",
-  "icon": "info-sign",
-  "prefix": "glyphicon",
-  "extraClasses": "fa-rotate-0",
-}
-            );
-        
-    
-        var popup_4e1677c58e1d3b44def6769e28a14729 = L.popup({
-  "maxWidth": "100%",
-});
-
-        
-            
-                var html_f05d909e89e1b238887fcf5e0dd71353 = $(`<div id="html_f05d909e89e1b238887fcf5e0dd71353" style="width: 100.0%; height: 100.0%;">Master of BIPM (2025-2027)) 💼</div>`)[0];
-                popup_4e1677c58e1d3b44def6769e28a14729.setContent(html_f05d909e89e1b238887fcf5e0dd71353);
-            
-        
-
-        marker_7b972004addd6cda2ecc486451b3a048.bindPopup(popup_4e1677c58e1d3b44def6769e28a14729)
-        ;
-
-        
-    
-    
-            marker_7b972004addd6cda2ecc486451b3a048.bindTooltip(
-                `<div>
-                     Berlin, Germany
-                 </div>`,
-                {
-  "sticky": true,
-}
-            );
-        
-    
-                marker_7b972004addd6cda2ecc486451b3a048.setIcon(icon_0923cc1499b4f40a6b6a5facde7e235d);
-            
-    
-            var poly_line_2d587549f7f0f3bb08d6930484abf3d0 = L.polyline(
-                [[41.0082, 28.9784], [40.99164456520966, 29.043017230283514], [40.975052881164146, 29.107602106160204], [40.958424986817235, 29.172154592164613], [40.94176092115657, 29.23667465309155], [40.92506072320337, 29.301162253995855], [40.90832443201205, 29.365617360192072], [40.891552086669904, 29.43003993725413], [40.87474372629676, 29.494429951015096], [40.85789939004465, 29.558787367566808], [40.841019117097474, 29.623112153259626], [40.824102946670685, 29.687404274702065], [40.80715091801092, 29.751663698760524], [40.790163070395685, 29.81589039255895], [40.77313944313304, 29.880084323478496], [40.756080075561265, 29.94424545915723], [40.73898500704848, 30.008373767489807], [40.72185427699237, 30.072469216627095], [40.70468792481986, 30.136531774975886], [40.68748598998674, 30.20056141119853], [40.6702485119774, 30.26455809421262], [40.65297553030442, 30.328521793190607], [40.63566708450832, 30.39245247755952], [40.618323214157215, 30.456350117000532], [40.600943958846464, 30.52021468144867], [40.58352935819837, 30.584046141092436], [40.56607945186186, 30.647844466373446], [40.548594279512145, 30.71160962798608], [40.53107388085041, 30.7753415968771], [40.51351829560348, 30.839040344245287], [40.495927563523544, 30.90270584154107], [40.47830172438777, 30.96633806046618], [40.46064081799801, 31.02993697297322], [40.44294488418055, 31.093502551265317], [40.42521396278565, 31.157034767795746], [40.407448093687385, 31.220533595267533], [40.38964731678322, 31.283999006633056], [40.37181167199372, 31.347430975093683], [40.35394119926229, 31.410829474099348], [40.33603593855477, 31.474194477348167], [40.31809592985921, 31.53752595878606], [40.30012121318551, 31.600823892606297], [40.2821118285651, 31.66408825324916], [40.26406781605066, 31.727319015401477], [40.24598921571582, 31.790516153996233], [40.2278760676548, 31.853679644212193], [40.20972841198214, 31.916809461473424], [40.19154628883241, 31.979905581448932], [40.17332973835985, 32.0429679800522], [40.15507880073811, 32.10599663344079], [40.13679351615993, 32.16899151801593], [40.11847392483685, 32.231952610422056], [40.10012006699885, 32.2948798875464], [40.08173198289414, 32.35777332651855], [40.063309712788794, 32.42063290471001], [40.044853296966465, 32.483458599733794], [40.02636277572807, 32.54625038944397], [40.00783818939153, 32.60900825193518], [39.98927957829145, 32.671732165542245], [39.970686982778815, 32.73442210883973], [39.95206044322071, 32.79707806064144], [39.9334, 32.8597]],
-                {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
-            ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-            var poly_line_634fea132a8265ace1e78a1af85bc2b5 = L.polyline(
-                [[39.9334, 32.8597], [40.12115912290708, 32.60698483301847], [40.308357690372745, 32.352877614505445], [40.49498898979448, 32.09736556394823], [40.68104623139753, 31.840435858249716], [40.86652254750469, 31.582075634160642], [41.05141099181282, 31.322271990830153], [41.23570453867722, 31.0610119924777], [41.419396082404326, 30.79828267118995], [41.60247843655381, 30.53407102984607], [41.78494433325067, 30.26836404517495], [41.96678642250846, 30.001148670947863], [42.14799727156432, 29.73241184131025], [42.32856936422684, 29.462140474256138], [42.508495100237866, 29.190321475248915], [42.68776679464908, 28.91694174099218], [42.866376677214454, 28.641988163354227], [43.044316891799724, 28.36544763345001], [43.22157949581002, 28.087307045884216], [43.39815645963666, 27.8075533031593], [43.57403966612457, 27.526173320251992], [43.74922091006126, 27.243154029362223], [43.92369189768901, 26.95848238483809], [44.09744424624122, 26.67214536828039], [44.27046948350453, 26.384129993830683], [44.44275904740808, 26.094423313646203], [44.61430428564127, 25.803012423565374], [44.78509645530159, 25.509884468967343], [44.95512672257402, 25.21502665082908], [45.12438616244363, 24.918426231983283], [45.29286575844288, 24.62007054358054], [45.46055640243545, 24.319946991758766], [45.627448894438096, 24.018043064523162], [45.79353394248249, 23.71434633883956], [45.95880216251866, 23.40884448794403], [46.12324407836199, 23.101525288871347], [46.28685012168553, 22.792376630205023], [46.44961063205959, 22.481386520051004], [46.6115158570406, 22.168543094237382], [46.77255595231117, 21.85383462474199], [46.932720981873345, 21.537249528349566], [47.0920009182972, 21.21877637554005], [47.250385643026846, 20.898403899609118], [47.40786494674589, 20.57612100602207], [47.56442852980469, 20.25191678200144], [47.72006600271136, 19.925780506349028], [47.87476688668904, 19.597701659501947], [48.028520614301286, 19.267669933822642], [48.181316530148315, 18.935675244121963], [48.33314389163593, 18.601707738414262], [48.483991869819846, 18.265757808902727], [48.63384955032735, 17.927816103193393], [48.782705934359015, 17.587873535734758], [48.93054993977238, 17.245921299480695], [49.07737040225043, 16.901950877772585], [49.22315607655672, 16.55595405643715], [49.36789563787984, 16.207922936095187], [49.5115776832694, 15.857849944676058], [49.654190733165834, 15.505727850132317], [49.79572323302639, 15.151549773347991], [49.93616355504955, 14.79530920123355], [50.0755, 14.437]],
-                {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
-            ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-            var poly_line_9b16fcee781e7c6d8f43e9639a3c166c = L.polyline(
-                [[50.0755, 14.437], [50.11565313350231, 14.420939629466044], [50.15580376287381, 14.404852374689684], [50.19595188133587, 14.388738153812438], [50.23609748208345, 14.372596884661986], [50.27624055828498, 14.356428484750655], [50.31638110308217, 14.340232871273933], [50.356519109589925, 14.324009961108954], [50.39665457089621, 14.307759670812993], [50.43678748006188, 14.291481916621914], [50.476917830120584, 14.275176614448663], [50.517045614078604, 14.258843679881704], [50.557170824914685, 14.242483028183493], [50.59729345557997, 14.226094574288883], [50.637413498997816, 14.209678232803585], [50.677530948063634, 14.19323391800257], [50.717645795644785, 14.176761543828501], [50.75775803458045, 14.160261023890111], [50.797867657681394, 14.143732271460635], [50.837974657729944, 14.127175199476165], [50.878079027479785, 14.110589720534039], [50.91818075965578, 14.09397574689121], [50.95827984695392, 14.077333190462602], [50.99837628204106, 14.06066196281947], [51.03847005755483, 14.043961975187727], [51.07856116610355, 14.027233138446281], [51.11864960026593, 14.010475363125362], [51.15873535259106, 13.993688559404825], [51.19881841559819, 13.976872637112455], [51.23889878177654, 13.960027505722273], [51.27897644358527, 13.943153074352802], [51.3190513934532, 13.926249251765347], [51.359123623778714, 13.90931594636227], [51.399193126929596, 13.892353066185223], [51.43925989524288, 13.875360518913414], [51.47932392102466, 13.858338211861835], [51.519385196549976, 13.841286051979466], [51.55944371406262, 13.82420394584753], [51.59949946577497, 13.807091799677659], [51.63955244386786, 13.789949519310104], [51.67960264049044, 13.772777010211922], [51.71965004775988, 13.755574177475145], [51.75969465776136, 13.73834092581495], [51.79973646254784, 13.72107715956778], [51.83977545413989, 13.703782782689544], [51.879811624525516, 13.68645769875369], [51.91984496565999, 13.669101810949359], [51.959875469465736, 13.651715022079486], [51.999903127832056, 13.634297234558904], [52.03992793261506, 13.616848350412416], [52.07994987563743, 13.599368271272889], [52.11996894868828, 13.581856898379314], [52.159985143522945, 13.564314132574864], [52.19999845186284, 13.54673987430493], [52.24000886539528, 13.529134023615162], [52.28001637577325, 13.511496480149484], [52.32002097461529, 13.493827143148112], [52.360022653505325, 13.476125911445532], [52.40002140399237, 13.458392683468523], [52.4400172175905, 13.440627357234085], [52.48001008577856, 13.42282983034745], [52.52, 13.405]],
-                {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
-            ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-            tile_layer_b646d4f5e57921a5f87f003966d1b2ff.addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-                marker_8ca69c2294ffe6fdd3a16a7cd0d0e7de.setIcon(icon_be8663732ebe98cb1c805628868ec50c);
-            
-    
-                marker_7ea2569dbf933b9386430938c28fa428.setIcon(icon_fafa9902f5223b3bd1f300c6847aa4dc);
-            
-    
-                marker_496a00957f953e0b7eb870b546d5e84c.setIcon(icon_897a98bb8dfb3ccdd5d822f9b062a479);
-            
-    
-                marker_7b972004addd6cda2ecc486451b3a048.setIcon(icon_0923cc1499b4f40a6b6a5facde7e235d);
-            
-    
-            tile_layer_b646d4f5e57921a5f87f003966d1b2ff.addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-                marker_8ca69c2294ffe6fdd3a16a7cd0d0e7de.setIcon(icon_be8663732ebe98cb1c805628868ec50c);
-            
-    
-                marker_7ea2569dbf933b9386430938c28fa428.setIcon(icon_fafa9902f5223b3bd1f300c6847aa4dc);
-            
-    
-                marker_496a00957f953e0b7eb870b546d5e84c.setIcon(icon_897a98bb8dfb3ccdd5d822f9b062a479);
-            
-    
-                marker_7b972004addd6cda2ecc486451b3a048.setIcon(icon_0923cc1499b4f40a6b6a5facde7e235d);
-            
-    
-            tile_layer_b646d4f5e57921a5f87f003966d1b2ff.addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-                marker_8ca69c2294ffe6fdd3a16a7cd0d0e7de.setIcon(icon_be8663732ebe98cb1c805628868ec50c);
-            
-    
-                marker_7ea2569dbf933b9386430938c28fa428.setIcon(icon_fafa9902f5223b3bd1f300c6847aa4dc);
-            
-    
-                marker_496a00957f953e0b7eb870b546d5e84c.setIcon(icon_897a98bb8dfb3ccdd5d822f9b062a479);
-            
-    
-                marker_7b972004addd6cda2ecc486451b3a048.setIcon(icon_0923cc1499b4f40a6b6a5facde7e235d);
-            
-    
-            tile_layer_b646d4f5e57921a5f87f003966d1b2ff.addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-                marker_8ca69c2294ffe6fdd3a16a7cd0d0e7de.setIcon(icon_be8663732ebe98cb1c805628868ec50c);
-            
-    
-                marker_7ea2569dbf933b9386430938c28fa428.setIcon(icon_fafa9902f5223b3bd1f300c6847aa4dc);
-            
-    
-                marker_496a00957f953e0b7eb870b546d5e84c.setIcon(icon_897a98bb8dfb3ccdd5d822f9b062a479);
-            
-    
-                marker_7b972004addd6cda2ecc486451b3a048.setIcon(icon_0923cc1499b4f40a6b6a5facde7e235d);
-            
-    
-            tile_layer_b646d4f5e57921a5f87f003966d1b2ff.addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-    
-                marker_8ca69c2294ffe6fdd3a16a7cd0d0e7de.setIcon(icon_be8663732ebe98cb1c805628868ec50c);
-            
-    
-                marker_7ea2569dbf933b9386430938c28fa428.setIcon(icon_fafa9902f5223b3bd1f300c6847aa4dc);
-            
-    
-                marker_496a00957f953e0b7eb870b546d5e84c.setIcon(icon_897a98bb8dfb3ccdd5d822f9b062a479);
-            
-    
-                marker_7b972004addd6cda2ecc486451b3a048.setIcon(icon_0923cc1499b4f40a6b6a5facde7e235d);
-            
-</script>
+    </script>
+    </body>
 </html>
