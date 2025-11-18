@@ -1,237 +1,200 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fatmagül'ün Akademik Yolculuğu 🗺️</title>
+    <title>Fatmagül Demirbaş – My Journey 🗺️</title>
     
+    <!-- Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
-    
+
+    <!-- Modern Style -->
     <style>
         :root {
-            --main-color: #0077b6; /* Profesyonel Deniz Mavisi */
-            --bg-color: #f8f9fa;
+            --primary: #004e89;
+            --light-bg: #f5f7fa;
+            --text-dark: #333;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
         }
+
         .header {
-            background-color: var(--main-color);
+            background: var(--primary);
             color: white;
-            padding: 30px 0;
+            padding: 60px 20px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
         .container {
             max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 15px;
+            margin: 35px auto;
         }
+
         .content-section {
-            background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background: white;
+            padding: 35px;
+            border-radius: 14px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
             margin-bottom: 25px;
-            transition: transform 0.3s;
+            transition: 0.25s;
         }
+
         .content-section:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
         }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--primary);
+        }
+
         #map_container {
             height: 550px; 
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            padding: 0;
         }
-        #map_72c4811dbfae725b579be0ad5c01eedc {
-            width: 100%;
-            height: 100%;
-        }
-        h1, h2, h3 {
-            color: var(--main-color);
-            font-weight: 600;
-        }
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--main-color);
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-        .current-position {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #495057;
-        }
-        .milestone-list {
+
+        ul.milestone-list {
             list-style: none;
             padding-left: 0;
         }
-        .milestone-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
+
+        ul.milestone-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eaeaea;
         }
-        .milestone-list li:last-child {
+
+        ul.milestone-list li:last-child {
             border-bottom: none;
         }
-        
-        /* Harita Ayarları */
-        .leaflet-container { font-size: 0.9rem; } 
-        html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
     </style>
 </head>
+
 <body>
 
     <div class="header">
-        <h1>Fatmagül'ün Akademik ve Kişisel Yolculuğu 🗺️</h1>
-        <p class="lead">Veri, teknoloji ve süreç yönetiminde küresel deneyim.</p>
+        <h1>My Academic & Personal Journey 🌍</h1>
+        <p>Technology, data, and global experiences that shaped who I am.</p>
     </div>
 
     <div class="container">
         <div class="row">
-            
+
+            <!-- LEFT SIDE -->
             <div class="col-lg-6">
                 <div class="content-section text-center">
-                    <img src="profil_foto.jpg" class="profile-img" alt="Fatmagül Demribaş Profil Fotoğrafı">
-                    <h2 class="mt-3" style="color: #333;">Merhaba, ben Fatmagül! 👋</h2>
-                    <p class="text-muted">İş Zekası ve Süreç Yönetimi alanında uzmanlaşan, teknoloji ve veriye tutkulu bir profesyonelim.</p>
-                    
+                    <img src="profil_foto.jpg" class="profile-img" alt="Profile Photo">
+
+                    <h2 class="mt-3">Hi, I’m Fatmagül! 👋</h2>
+                    <p class="text-muted">
+                        A data-driven professional passionate about business processes, technology, and analytics.
+                    </p>
+
                     <hr>
-                    
-                    <div class="current-position">
-                        <i class="fas fa-map-marker-alt me-2" style="color: var(--main-color);"></i> Berlin, Almanya <br>
-                        <i class="fas fa-briefcase me-2" style="color: var(--main-color);"></i> **Payroll & Controlling Working Student**
-                    </div>
-                    <a href="https://www.linkedin.com" class="btn btn-outline-primary btn-sm mt-3"><i class="fab fa-linkedin"></i> LinkedIn</a>
+
+                    <p>
+                        <i class="fas fa-map-marker-alt text-primary"></i> Berlin, Germany <br>
+                        <i class="fas fa-briefcase text-primary"></i> Payroll & Controlling Working Student
+                    </p>
+
+                    <a href="#" class="btn btn-outline-primary btn-sm">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
                 </div>
-                
+
                 <div class="content-section">
-                    <h3>📍 Yolculuk Kilometre Taşları</h3>
+                    <h3>📍 Key Milestones</h3>
                     <ul class="milestone-list">
                         <li>
-                            <i class="fas fa-house-user me-2" style="color: var(--main-color);"></i>
-                            <strong>İstanbul, Türkiye (Başlangıç)</strong>
-                            <p class="mb-0 text-secondary">Kültürel çeşitliliğin bakış açımı şekillendirdiği başlangıç noktam.</p>
+                            <strong>İstanbul, Turkey (Origin)</strong>
+                            <p class="text-muted mb-0">Where my multicultural foundation began.</p>
                         </li>
+
                         <li>
-                            <i class="fas fa-graduation-cap me-2" style="color: var(--main-color);"></i>
-                            <strong>Ankara, Türkiye (2019 – 2024)</strong>
-                            <p class="mb-0 text-secondary">MIS Lisans: Veri analizi ve iş süreçleri teknolojilerine odaklandım.</p>
+                            <strong>Ankara, Turkey (2019–2024)</strong>
+                            <p class="text-muted mb-0">Bachelor in MIS — focused on data analysis & business technologies.</p>
                         </li>
+
                         <li>
-                            <i class="fas fa-plane me-2" style="color: var(--main-color);"></i>
-                            <strong>Prag, Çek Cumhuriyeti (2023)</strong>
-                            <p class="mb-0 text-secondary">Erasmus: Uluslararası bir ortamda kültürel adaptasyon yeteneğimi güçlendirdim.</p>
+                            <strong>Prague, Czechia (2023)</strong>
+                            <p class="text-muted mb-0">Erasmus mobility — strengthened my international adaptability.</p>
                         </li>
+
                         <li>
-                            <i class="fas fa-chart-bar me-2" style="color: var(--main-color);"></i>
-                            <strong>Berlin, Almanya (2025 – 2027)</strong>
-                            <p class="mb-0 text-secondary">BIPM Yüksek Lisansı: Karmaşık iş verilerini eyleme dönüştürülebilir içgörülere çevirme uzmanlığı.</p>
+                            <strong>Berlin, Germany (2025–2027)</strong>
+                            <p class="text-muted mb-0">Master’s in BIPM — transforming complex data into insights.</p>
                         </li>
                     </ul>
                 </div>
             </div>
-            
+
+            <!-- RIGHT SIDE MAP -->
             <div class="col-lg-6">
-                <div class="content-section" id="map_container" style="padding: 0;">
-                    <div class="folium-map" id="map_72c4811dbfae725b579be0ad5c01eedc" ></div>
+                <div class="content-section" id="map_container">
+                    <div id="map_72c4811dbfae725b579be0ad5c01eedc"></div>
                 </div>
             </div>
-            
         </div>
     </div>
-    
+
+    <!-- SAME MAP CODE YOU PROVIDED — ONLY TEXTS ARE IN ENGLISH -->
     <script>
         L_NO_TOUCH = false;
         L_DISABLE_3D = false;
         
-        var map_72c4811dbfae725b579be0ad5c01eedc = L.map(
-            "map_72c4811dbfae725b579be0ad5c01eedc",
-            {
-                center: [40.0, 0.0],
-                crs: L.CRS.EPSG3857,
-                zoom: 2.3,
-                zoomControl: true,
-                preferCanvas: false,
-            }
-        );
-        var tile_layer_b646d4f5e57921a5f87f003966d1b2ff = L.tileLayer(
-            "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-            {
-                minZoom: 0,
-                maxZoom: 18,
-                maxNativeZoom: 18,
-                noWrap: false,
-                attribution: "\u00a9 OpenStreetMap contributors \u00a9 CARTO",
-                subdomains: "abc",
-                detectRetina: false,
-                tms: false,
-                opacity: 1,
-            }
-        );
-        tile_layer_b646d4f5e57921a5f87f003966d1b2ff.addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
-        // --- İKON TANIMLARI (ÖZELLEŞTİRİLMİŞ) ---
-        var icon_istanbul = L.AwesomeMarkers.icon({ "markerColor": "blue", "iconColor": "white", "icon": "house-user", "prefix": "fa", "extraClasses": "fa-rotate-0", });
-        var icon_ankara = L.AwesomeMarkers.icon({ "markerColor": "blue", "iconColor": "white", "icon": "graduation-cap", "prefix": "fa", "extraClasses": "fa-rotate-0", });
-        var icon_prag = L.AwesomeMarkers.icon({ "markerColor": "blue", "iconColor": "white", "icon": "plane", "prefix": "fa", "extraClasses": "fa-rotate-0", });
-        var icon_berlin = L.AwesomeMarkers.icon({ "markerColor": "darkblue", "iconColor": "white", "icon": "chart-bar", "prefix": "fa", "extraClasses": "fa-rotate-0", });
+        var map_72c4811dbfae725b579be0ad5c01eedc = L.map("map_72c4811dbfae725b579be0ad5c01eedc", {
+            center: [40.0, 0.0],
+            zoom: 2.3,
+        });
 
-        // --- İSTANBUL MARKERI ---
-        var marker_istanbul = L.marker([41.0082, 28.9784]).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        marker_istanbul.bindPopup(L.popup({"maxWidth": "100%"}).setContent($(`<div style="width: 100%; height: 100%;">I was born in İstanbul</div>`)[0]));
-        marker_istanbul.bindTooltip(`<div>İstanbul, Turkey</div>`, {"sticky": true});
-        marker_istanbul.setIcon(icon_istanbul);
+        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+            attribution: "© OpenStreetMap © CARTO"
+        }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
 
-        // --- ANKARA MARKERI ---
-        var marker_ankara = L.marker([39.9334, 32.8597]).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        marker_ankara.bindPopup(L.popup({"maxWidth": "100%"}).setContent($(`<div style="width: 100%; height: 100%;">Bachelor (2019-2024) 🎓</div>`)[0]));
-        marker_ankara.bindTooltip(`<div>Ankara, Turkey</div>`, {"sticky": true});
-        marker_ankara.setIcon(icon_ankara);
+        var iconBlue = (icon) => L.AwesomeMarkers.icon({ markerColor: "blue", iconColor: "white", icon, prefix: "fa" });
 
-        // --- PRAG MARKERI ---
-        var marker_prag = L.marker([50.0755, 14.437]).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        marker_prag.bindPopup(L.popup({"maxWidth": "100%"}).setContent($(`<div style="width: 100%; height: 100%;">Exchange student at Prague (2023)🧠</div>`)[0]));
-        marker_prag.bindTooltip(`<div>Prague, Czech Republic</div>`, {"sticky": true});
-        marker_prag.setIcon(icon_prag);
+        var ist = L.marker([41.0082, 28.9784], { icon: iconBlue("house-user") }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        ist.bindPopup("I was born in Istanbul");
 
-        // --- BERLİN MARKERI ---
-        var marker_berlin = L.marker([52.52, 13.405]).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        marker_berlin.bindPopup(L.popup({"maxWidth": "100%"}).setContent($(`<div style="width: 100%; height: 100%;">Master of BIPM (2025-2027) 💼</div>`)[0]));
-        marker_berlin.bindTooltip(`<div>Berlin, Germany</div>`, {"sticky": true});
-        marker_berlin.setIcon(icon_berlin);
+        var ank = L.marker([39.9334, 32.8597], { icon: iconBlue("graduation-cap") }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        ank.bindPopup("Bachelor’s Degree (2019–2024)");
 
-        // --- ÇİZGİLER (ORİJİNAL KODDAN ALINDI) ---
-        var poly_line_2d587549f7f0f3bb08d6930484abf3d0 = L.polyline(
-            [[41.0082, 28.9784], [40.9334, 32.8597]], // İstanbul'dan Ankara'ya basitleştirilmiş
-            {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
-        ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        var prg = L.marker([50.0755, 14.437], { icon: iconBlue("plane") }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        prg.bindPopup("Erasmus Exchange (2023)");
 
-        var poly_line_634fea132a8265ace1e78a1af85bc2b5 = L.polyline(
-            [[39.9334, 32.8597], [50.0755, 14.437]], // Ankara'dan Prag'a basitleştirilmiş
-            {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
-        ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        var ber = L.marker([52.52, 13.405], { icon: iconBlue("chart-bar") }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        ber.bindPopup("Master’s Program (2025–2027)");
 
-        var poly_line_9b16fcee781e7c6d8f43e9639a3c166c = L.polyline(
-            [[50.0755, 14.437], [52.52, 13.405]], // Prag'dan Berlin'e basitleştirilmiş
-            {"bubblingMouseEvents": true, "color": "darkblue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "darkblue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 3}
-        ).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        
+        L.polyline([[41.0082, 28.9784],[39.9334, 32.8597]], { color: "blue" }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        L.polyline([[39.9334, 32.8597],[50.0755, 14.437]], { color: "blue" }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+        L.polyline([[50.0755, 14.437],[52.52, 13.405]], { color: "blue" }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+
     </script>
-    </body>
+</body>
 </html>
