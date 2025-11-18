@@ -3,61 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fatma Gül Demirbaş — Portfolio</title>
+  <title>Fatma Gül Demirbaş — My Code & Journey</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+  <!-- Font: Monospaced + Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #ffffff;
-      --primary: #0a67ff;
-      --dark: #1a1a1a;
-      --muted: #6c757d;
-      --radius: 12px;
-      --maxw: 1100px;
+      --bg: #1e1e1e;
+      --text: #dcdcdc;
+      --accent: #0ff; /* Neon mavi / cyanan */
+      --muted: #777;
+      --radius: 8px;
+      --maxw: 900px;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
-
-    .container { max-width: var(--maxw); margin: auto; padding: 40px 20px; }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height:1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    .container { max-width: var(--maxw); margin: auto; padding: 30px 20px; }
 
     header.hero {
       text-align: center;
       padding: 80px 20px;
+      position: relative;
     }
     header.hero h1 {
-      font-size: clamp(32px, 6vw, 60px);
-      color: var(--primary);
-      margin-bottom: 20px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: clamp(28px, 6vw, 48px);
+      color: var(--accent);
+      margin-bottom: 16px;
     }
-    header.hero p {
-      font-size: 1.2rem;
+    header.hero .typing {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.1rem;
       color: var(--muted);
-      margin-bottom: 30px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid var(--accent);
+      width: 0;
+      animation: typing 4s steps(40) forwards, blink 1s infinite step-end alternate;
     }
-    .hero-button {
-      padding: 12px 24px;
-      background: var(--primary);
-      color: white;
-      border: none;
-      border-radius: var(--radius);
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
     }
-    .hero-button:hover {
-      background: darken(var(--primary), 10%);
+    @keyframes blink {
+      50% { border-color: transparent; }
     }
 
     section { margin-top: 80px; }
-
     .section-title {
-      font-size: 1.8rem;
-      color: var(--primary);
+      font-size: 1.6rem;
+      color: var(--accent);
       margin-bottom: 24px;
       text-align: center;
     }
@@ -65,43 +62,27 @@
     .about {
       display: flex;
       flex-wrap: wrap;
+      gap: 30px;
       align-items: center;
-      gap: 40px;
-    }
-    .about .text {
-      flex: 1;
-      min-width: 280px;
     }
     .about .image {
       flex: 1;
-      min-width: 280px;
+      min-width: 250px;
     }
     .about .image img {
       width: 100%;
       border-radius: var(--radius);
+      border: 2px solid var(--accent);
     }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+    .about .text {
+      flex: 2;
+      min-width: 280px;
     }
-    .gallery img {
-      width: 100%;
-      border-radius: var(--radius);
-      object-fit: cover;
-      transition: transform 0.3s, opacity 0.3s;
-      cursor: pointer;
-    }
-    .gallery img:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
+    .about .text p {
+      color: var(--text);
     }
 
     .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
       position: relative;
     }
     .timeline::before {
@@ -111,52 +92,70 @@
       top: 0;
       bottom: 0;
       width: 4px;
-      background: var(--primary);
+      background: var(--accent);
     }
     .milestone {
       display: flex;
       gap: 20px;
-      align-items: flex-start;
+      margin-bottom: 40px;
     }
     .milestone .dot {
       width: 24px;
       height: 24px;
-      background: var(--primary);
+      background: var(--accent);
       border-radius: 50%;
       flex-shrink: 0;
-      margin-top: 4px;
+      margin-top: 6px;
     }
     .milestone .meta h3 {
       margin: 0;
       font-size: 1.1rem;
-      color: var(--dark);
+      color: var(--text);
+      font-family: 'Roboto Mono', monospace;
     }
     .milestone .meta p {
       color: var(--muted);
-      margin-top: 4px;
+      margin-top: 6px;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .project-card {
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid #333;
+      transition: transform 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+    .project-card h4 {
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-family: 'Roboto Mono', monospace;
+    }
+    .project-card p {
+      color: var(--text);
     }
 
     .contact {
       text-align: center;
     }
     .contact a {
-      color: var(--primary);
+      color: var(--accent);
       font-size: 1.1rem;
-      text-decoration: none;
-    }
-    .contact a + a {
-      margin-left: 20px;
     }
 
     footer {
-      margin-top: 60px;
+      margin-top: 80px;
       text-align: center;
       color: var(--muted);
       font-size: 0.9rem;
-    }
-
-    @media (max-width: 800px) {
-      .about { flex-direction: column; }
     }
   </style>
 </head>
@@ -166,69 +165,120 @@
     <!-- HERO -->
     <header class="hero">
       <h1>Hi, I’m <strong>Fatma Gül Demirbaş</strong></h1>
-      <p>I’m passionate about data, process design, and creating meaningful systems.</p>
-      <button class="hero-button" onclick="document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' })">
-        View My Work
-      </button>
+      <div class="typing" id="typing"></div>
     </header>
 
-    <!-- ABOUT -->
-    <section id="about" class="about">
+    <!-- ABOUT ME -->
+    <section class="about" id="about">
       <div class="image">
-        <img src="your-photo1.jpg" alt="Fatma Gül Demirbaş Photo">
+        <img src="your-photo.jpg" alt="Fatma Gul Demirbas">
       </div>
       <div class="text">
-        <h2 class="section-title">About Me</h2>
-        <p>I studied Management Information Systems and I am currently working and living in Berlin. I love turning complex data into actionable insights, designing efficient workflows, and solving real-world business problems.</p>
+        <div class="section-title">About Me</div>
+        <p>I am a data & process enthusiast. I hold a Bachelor’s in MIS and I'm currently based in Berlin, working and studying Business Intelligence & Process Management. I love building scalable systems and translating raw data into meaningful insights.</p>
       </div>
     </section>
 
-    <!-- GALLERY -->
-    <section id="gallery">
-      <h2 class="section-title">Gallery</h2>
-      <div class="gallery">
-        <img src="photo1.jpg" alt="Project / Memory 1">
-        <img src="photo2.jpg" alt="Project / Memory 2">
-        <img src="photo3.jpg" alt="Project / Memory 3">
-        <img src="photo4.jpg" alt="Project / Memory 4">
-      </div>
-    </section>
-
-    <!-- TIMELINE / JOURNEY -->
+    <!-- MY JOURNEY -->
     <section id="journey">
-      <h2 class="section-title">My Journey</h2>
+      <div class="section-title">My Journey</div>
       <div class="timeline">
         <div class="milestone">
           <div class="dot"></div>
-          <div class="meta"><h3>Istanbul – Origin</h3><p>Where it all started.</p></div>
+          <div class="meta">
+            <h3>Istanbul — Origin</h3>
+            <p>Where my multicultural perspective started.</p>
+          </div>
         </div>
         <div class="milestone">
           <div class="dot"></div>
-          <div class="meta"><h3>Ankara – Bachelor (2019‑2024)</h3><p>Studied MIS.</p></div>
+          <div class="meta">
+            <h3>Ankara — Bachelor (2019‑2024)</h3>
+            <p>Management Information Systems, focused on data & processes.</p>
+          </div>
         </div>
         <div class="milestone">
           <div class="dot"></div>
-          <div class="meta"><h3>Prague – Erasmus (2023)</h3><p>International experience.</p></div>
+          <div class="meta">
+            <h3>Prague — Erasmus (2023)</h3>
+            <p>A cross-cultural academic experience.</p>
+          </div>
         </div>
         <div class="milestone">
           <div class="dot"></div>
-          <div class="meta"><h3>Berlin – Master (2025‑2027)</h3><p>Pursuing Business Intelligence & Process Management.</p></div>
+          <div class="meta">
+            <h3>Berlin — Master (2025‑2027)</h3>
+            <p>Pursuing Business Intelligence & Process Management.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS / PHOTOS -->
+    <section id="projects">
+      <div class="section-title">Projects / Photos</div>
+      <div class="projects">
+        <!-- her project / fotoğraf için bir kart -->
+        <div class="project-card">
+          <h4>Project One</h4>
+          <p>Description of project one or memory from my journey.</p>
+        </div>
+        <div class="project-card">
+          <h4>Project Two</h4>
+          <p>Description of project two or another memory.</p>
+        </div>
+        <div class="project-card">
+          <h4>Project Three</h4>
+          <p>More about my academic or personal projects.</p>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="contact">
-      <h2 class="section-title">Get in Touch</h2>
-      <p>You can reach me via email or LinkedIn.</p>
-      <a href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i> Email Me</a>
-      <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    <section class="contact" id="contact">
+      <div class="section-title">Get in Touch</div>
+      <p>Email: <a href="mailto:dfatmagul72@gmail.com">dfatmagul72@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com" target="_blank">My LinkedIn</a></p>
     </section>
 
     <footer>
       © 2025 Fatma Gül Demirbaş
     </footer>
   </div>
+
+  <script>
+    // Typing effect for hero text
+    const texts = [
+      "I build data‑driven systems.",
+      "I translate insights into action.",
+      "I shape processes and product thinking."
+    ];
+    let index = 0, subIndex = 0;
+    const typingElem = document.getElementById('typing');
+
+    function type() {
+      if (subIndex < texts[index].length) {
+        typingElem.textContent += texts[index].charAt(subIndex);
+        subIndex++;
+        setTimeout(type, 100);
+      } else {
+        setTimeout(erase, 2000);
+      }
+    }
+
+    function erase() {
+      if (subIndex > 0) {
+        typingElem.textContent = texts[index].substring(0, subIndex - 1);
+        subIndex--;
+        setTimeout(erase, 50);
+      } else {
+        index = (index + 1) % texts.length;
+        setTimeout(type, 500);
+      }
+    }
+
+    type();
+  </script>
 
 </body>
 </html>
