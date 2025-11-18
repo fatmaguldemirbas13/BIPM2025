@@ -3,238 +3,232 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fatma Gül Demirbaş — My Journey & Projects</title>
+  <title>Fatma Gül Demirbaş — Portfolio</title>
 
-  <!-- Font & Icons -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
-
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css" />
-  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
 
   <style>
     :root {
-      --bg: #f5f7fa;
-      --card: #ffffff;
+      --bg: #ffffff;
       --primary: #0a67ff;
-      --muted: #6b7280;
+      --dark: #1a1a1a;
+      --muted: #6c757d;
       --radius: 12px;
       --maxw: 1100px;
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: #111;
-    }
-    a { color: var(--primary); text-decoration: none; }
 
-    .container {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 30px 20px;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.6; }
+
+    .container { max-width: var(--maxw); margin: auto; padding: 40px 20px; }
 
     header.hero {
       text-align: center;
-      padding: 60px 20px;
+      padding: 80px 20px;
     }
     header.hero h1 {
       font-size: clamp(32px, 6vw, 60px);
-      margin-bottom: 16px;
       color: var(--primary);
+      margin-bottom: 20px;
     }
     header.hero p {
       font-size: 1.2rem;
       color: var(--muted);
-    }
-
-    .section {
-      margin-top: 60px;
-    }
-
-    .card {
-      background: var(--card);
-      padding: 30px;
-      border-radius: var(--radius);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
       margin-bottom: 30px;
     }
+    .hero-button {
+      padding: 12px 24px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .hero-button:hover {
+      background: darken(var(--primary), 10%);
+    }
+
+    section { margin-top: 80px; }
 
     .section-title {
-      margin-bottom: 24px;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: var(--primary);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+    .about .text {
+      flex: 1;
+      min-width: 280px;
+    }
+    .about .image {
+      flex: 1;
+      min-width: 280px;
+    }
+    .about .image img {
+      width: 100%;
+      border-radius: var(--radius);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: var(--radius);
+      object-fit: cover;
+      transition: transform 0.3s, opacity 0.3s;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
 
     .timeline {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 30px;
+      position: relative;
     }
-
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--primary);
+    }
     .milestone {
       display: flex;
-      gap: 16px;
-      align-items: center;
+      gap: 20px;
+      align-items: flex-start;
     }
-
     .milestone .dot {
-      min-width: 40px;
-      min-height: 40px;
+      width: 24px;
+      height: 24px;
       background: var(--primary);
-      color: white;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 1.1rem;
+      flex-shrink: 0;
+      margin-top: 4px;
     }
-
     .milestone .meta h3 {
       margin: 0;
       font-size: 1.1rem;
+      color: var(--dark);
     }
     .milestone .meta p {
-      margin: 4px 0 0;
       color: var(--muted);
+      margin-top: 4px;
     }
 
-    #map {
-      width: 100%;
-      height: 450px;
-      border-radius: var(--radius);
-      border: 1px solid #e0e8f0;
-      overflow: hidden;
+    .contact {
+      text-align: center;
+    }
+    .contact a {
+      color: var(--primary);
+      font-size: 1.1rem;
+      text-decoration: none;
+    }
+    .contact a + a {
+      margin-left: 20px;
     }
 
     footer {
       margin-top: 60px;
       text-align: center;
       color: var(--muted);
-      font-size: 0.95rem;
-      padding: 20px 0;
+      font-size: 0.9rem;
     }
 
+    @media (max-width: 800px) {
+      .about { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
-
     <!-- HERO -->
     <header class="hero">
-      <h1>Hello, I’m <strong>Fatma Gül Demirbaş</strong></h1>
-      <p>I build meaningful systems by combining data analysis, processes, and strategic thinking.</p>
+      <h1>Hi, I’m <strong>Fatma Gül Demirbaş</strong></h1>
+      <p>I’m passionate about data, process design, and creating meaningful systems.</p>
+      <button class="hero-button" onclick="document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' })">
+        View My Work
+      </button>
     </header>
 
-    <!-- ABOUT ME -->
-    <section class="section">
-      <div class="card">
-        <div class="section-title">About Me</div>
-        <p>I earned my Bachelor's in MIS, studied abroad in Prague, and am now based in Berlin where I work and pursue a Master’s in Business Intelligence & Process Management. I thrive when turning complex data into actionable insights and designing systems that help teams scale.</p>
+    <!-- ABOUT -->
+    <section id="about" class="about">
+      <div class="image">
+        <img src="your-photo1.jpg" alt="Fatma Gül Demirbaş Photo">
+      </div>
+      <div class="text">
+        <h2 class="section-title">About Me</h2>
+        <p>I studied Management Information Systems and I am currently working and living in Berlin. I love turning complex data into actionable insights, designing efficient workflows, and solving real-world business problems.</p>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery">
+        <img src="photo1.jpg" alt="Project / Memory 1">
+        <img src="photo2.jpg" alt="Project / Memory 2">
+        <img src="photo3.jpg" alt="Project / Memory 3">
+        <img src="photo4.jpg" alt="Project / Memory 4">
       </div>
     </section>
 
     <!-- TIMELINE / JOURNEY -->
-    <section class="section">
-      <div class="card">
-        <div class="section-title">My Journey</div>
-        <div class="timeline">
-          <div class="milestone">
-            <div class="dot">I</div>
-            <div class="meta">
-              <h3>Istanbul — Root</h3>
-              <p>Where my multicultural perspective began.</p>
-            </div>
-          </div>
-
-          <div class="milestone">
-            <div class="dot">A</div>
-            <div class="meta">
-              <h3>Ankara — Bachelor (2019‑2024)</h3>
-              <p>Studied Management Information Systems; focused on data, tech & processes.</p>
-            </div>
-          </div>
-
-          <div class="milestone">
-            <div class="dot">P</div>
-            <div class="meta">
-              <h3>Prague — Erasmus (2023)</h3>
-              <p>A cross-cultural experience that broadened my professional mindset.</p>
-            </div>
-          </div>
-
-          <div class="milestone">
-            <div class="dot">B</div>
-            <div class="meta">
-              <h3>Berlin — Master (2025‑2027)</h3>
-              <p>Deepening my expertise in business intelligence & process optimization.</p>
-            </div>
-          </div>
+    <section id="journey">
+      <h2 class="section-title">My Journey</h2>
+      <div class="timeline">
+        <div class="milestone">
+          <div class="dot"></div>
+          <div class="meta"><h3>Istanbul – Origin</h3><p>Where it all started.</p></div>
+        </div>
+        <div class="milestone">
+          <div class="dot"></div>
+          <div class="meta"><h3>Ankara – Bachelor (2019‑2024)</h3><p>Studied MIS.</p></div>
+        </div>
+        <div class="milestone">
+          <div class="dot"></div>
+          <div class="meta"><h3>Prague – Erasmus (2023)</h3><p>International experience.</p></div>
+        </div>
+        <div class="milestone">
+          <div class="dot"></div>
+          <div class="meta"><h3>Berlin – Master (2025‑2027)</h3><p>Pursuing Business Intelligence & Process Management.</p></div>
         </div>
       </div>
     </section>
 
-    <!-- MAP -->
-    <section class="section">
-      <div class="card">
-        <div class="section-title">Global Journey Map</div>
-        <div id="map"></div>
-      </div>
-    </section>
-
     <!-- CONTACT -->
-    <section class="section">
-      <div class="card">
-        <div class="section-title">Get in Touch</div>
-        <p>Feel free to reach out for collaboration, advice, or just to chat!</p>
-        <p><i class="fas fa-envelope"></i> <a href="mailto:dfatmagul72@gmail.com">dfatmagul72@gmail.com</a></p>
-        <p><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com" target="_blank">LinkedIn Profile</a></p>
-      </div>
+    <section id="contact" class="contact">
+      <h2 class="section-title">Get in Touch</h2>
+      <p>You can reach me via email or LinkedIn.</p>
+      <a href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i> Email Me</a>
+      <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
     </section>
 
     <footer>
-      &copy; 2025 Fatma Gül Demirbaş
+      © 2025 Fatma Gül Demirbaş
     </footer>
-
   </div>
-
-  <script>
-    const map = L.map('map').setView([45, 10], 3);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© OpenStreetMap contributors © CARTO'
-    }).addTo(map);
-
-    function makeIcon(char, bg) {
-      return L.divIcon({
-        html: `<div style="width:36px;height:36px;border-radius:50%;background:${bg};color:white;display:flex;align-items:center;justify-content:center;font-weight:bold">${char}</div>`,
-        className: '',
-        iconSize: [36,36],
-        iconAnchor: [18,18]
-      });
-    }
-
-    const markers = [
-      { coords: [41.0082, 28.9784], label: 'I', name: 'Istanbul', desc: 'Origin' },
-      { coords: [39.9334, 32.8597], label: 'A', name: 'Ankara', desc: 'Bachelor (2019‑2024)' },
-      { coords: [50.0755, 14.437], label: 'P', name: 'Prague', desc: 'Erasmus (2023)' },
-      { coords: [52.52, 13.405], label: 'B', name: 'Berlin', desc: 'Master (2025‑2027)' },
-    ];
-
-    markers.forEach(m => {
-      L.marker(m.coords, { icon: makeIcon(m.label, varColor = '#0a67ff') })
-        .addTo(map)
-        .bindPopup(`<strong>${m.name}</strong><br>${m.desc}`);
-    });
-
-    const poly = L.polyline(markers.map(m => m.coords), { color: varColor = '#0a67ff', weight: 3, opacity: 0.6 }).addTo(map);
-    map.fitBounds(poly.getBounds().pad(0.7));
-  </script>
 
 </body>
 </html>
