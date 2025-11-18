@@ -1,200 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fatmagül Demirbaş – My Journey 🗺️</title>
-    
-    <!-- Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Fatma Gül Demirbaş — My Journey</title>
 
-    <!-- Modern Style -->
-    <style>
-        :root {
-            --primary: #004e89;
-            --light-bg: #f5f7fa;
-            --text-dark: #333;
-        }
+<!-- Fonts & Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--light-bg);
-            margin: 0;
-            padding: 0;
-            color: var(--text-dark);
-        }
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
 
-        .header {
-            background: var(--primary);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
+<!-- Simple Reset + Modern Styles -->
+<style>
+  :root{
+    --bg:#f6f8fb;
+    --card:#ffffff;
+    --primary:#0b6cff;
+    --muted:#6b7280;
+    --glass: rgba(255,255,255,0.6);
+    --radius:14px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#111;background:var(--bg);-webkit-font-smoothing:antialiased}
+  a{color:var(--primary);text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:36px auto;padding:24px}
+  header.hero{
+    background:linear-gradient(180deg, rgba(11,108,255,0.08), rgba(11,108,255,0.02));
+    border-radius:var(--radius);
+    padding:48px;
+    display:flex;
+    gap:32px;
+    align-items:center;
+    box-shadow:0 10px 30px rgba(12,34,56,0.06);
+  }
+  .hero-left{flex:1;min-width:260px}
+  .avatar{
+    width:150px;height:150px;border-radius:20px;object-fit:cover;border:4px solid #fff;box-shadow:0 6px 22px rgba(12,34,56,0.12);background:linear-gradient(135deg,var(--primary),#2bb6ff)
+  }
 
-        h1, h2, h3 {
-            font-weight: 700;
-        }
+  h1{font-weight:800;margin:0 0 8px 0;font-size:clamp(24px,4.5vw,40px);line-height:1.02}
+  p.lead{margin:0;color:var(--muted);font-size:1.05rem}
+  .hero-meta{margin-top:18px;color:var(--muted);font-weight:600;display:flex;gap:18px;flex-wrap:wrap}
+  .chip{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;background:var(--card);border-radius:999px;box-shadow:0 4px 12px rgba(11,108,255,0.06);font-weight:600;color:#123}
 
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
+  /* grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
+  @media (max-width:900px){ .grid{grid-template-columns:1fr} .hero{flex-direction:column;align-items:flex-start} .avatar{border-radius:50%} }
 
-        .container {
-            max-width: 1200px;
-            margin: 35px auto;
-        }
+  /* card */
+  .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 8px 24px rgba(12,34,56,0.06)}
+  .section-title{display:flex;align-items:center;gap:12px;margin:0 0 14px 0}
+  .section-title h2{margin:0;font-size:1.25rem;color:var(--primary)}
+  .muted{color:var(--muted);font-size:0.95rem}
 
-        .content-section {
-            background: white;
-            padding: 35px;
-            border-radius: 14px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-            margin-bottom: 25px;
-            transition: 0.25s;
-        }
+  /* timeline */
+  .timeline{display:flex;flex-direction:column;gap:12px}
+  .milestone{display:flex;gap:14px;padding:14px;border-radius:10px;border:1px solid #f0f3ff;background:linear-gradient(180deg,rgba(11,108,255,0.02),transparent)}
+  .milestone .dot{width:46px;height:46px;border-radius:10px;background:var(--primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;flex-shrink:0}
+  .milestone .meta{flex:1}
+  .milestone h3{margin:0;font-size:1rem}
+  .milestone p{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
 
-        .content-section:hover {
-            transform: translateY(-4px);
-        }
+  /* map */
+  #map{height:420px;border-radius:10px;overflow:hidden;border:1px solid #e6eefc}
+  .map-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .legend-item{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;background:var(--card);border-radius:999px;border:1px solid #f3f6ff;color:var(--muted)}
 
-        .profile-img {
-            width: 160px;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid var(--primary);
-        }
-
-        #map_container {
-            height: 550px; 
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        ul.milestone-list {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        ul.milestone-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        ul.milestone-list li:last-child {
-            border-bottom: none;
-        }
-    </style>
+  /* contact */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
+  .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--primary);color:white;border:none;font-weight:700;box-shadow:0 8px 18px rgba(11,108,255,0.14)}
+  footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem;padding:24px}
+  
+  /* subtle entrance animation */
+  .fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .6s ease forwards}
+  .delay-1{animation-delay:0.08s}
+  .delay-2{animation-delay:0.16s}
+  .delay-3{animation-delay:0.24s}
+  @keyframes fadeUp{to{opacity:1;transform:none}}
+</style>
 </head>
-
 <body>
 
-    <div class="header">
-        <h1>My Academic & Personal Journey 🌍</h1>
-        <p>Technology, data, and global experiences that shaped who I am.</p>
+<main class="wrap" role="main">
+  <!-- HERO -->
+  <header class="hero fade-up">
+    <div class="hero-left">
+      <h1>Hi — I’m <span style="color:var(--primary)">Fatma Gül Demirbaş</span>.</h1>
+      <p class="lead">I translate data into decisions. I work at the intersection of analytics, process design and product thinking — building systems that scale.</p>
+      <div class="hero-meta">
+        <div class="chip"><i class="fas fa-map-marker-alt"></i> Berlin, Germany</div>
+        <div class="chip"><i class="fas fa-briefcase"></i> Payroll & Controlling — Working Student</div>
+        <a class="chip" href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i> dfatmagul72@gmail.com</a>
+      </div>
     </div>
 
-    <div class="container">
-        <div class="row">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
+      <img src="profile.jpg" alt="Fatma Gül Demirbaş" class="avatar" />
+      <a href="#" class="btn-primary" aria-label="Visit LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+    </div>
+  </header>
 
-            <!-- LEFT SIDE -->
-            <div class="col-lg-6">
-                <div class="content-section text-center">
-                    <img src="profil_foto.jpg" class="profile-img" alt="Profile Photo">
+  <!-- MAIN GRID -->
+  <section class="grid">
 
-                    <h2 class="mt-3">Hi, I’m Fatmagül! 👋</h2>
-                    <p class="text-muted">
-                        A data-driven professional passionate about business processes, technology, and analytics.
-                    </p>
-
-                    <hr>
-
-                    <p>
-                        <i class="fas fa-map-marker-alt text-primary"></i> Berlin, Germany <br>
-                        <i class="fas fa-briefcase text-primary"></i> Payroll & Controlling Working Student
-                    </p>
-
-                    <a href="#" class="btn btn-outline-primary btn-sm">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                </div>
-
-                <div class="content-section">
-                    <h3>📍 Key Milestones</h3>
-                    <ul class="milestone-list">
-                        <li>
-                            <strong>İstanbul, Turkey (Origin)</strong>
-                            <p class="text-muted mb-0">Where my multicultural foundation began.</p>
-                        </li>
-
-                        <li>
-                            <strong>Ankara, Turkey (2019–2024)</strong>
-                            <p class="text-muted mb-0">Bachelor in MIS — focused on data analysis & business technologies.</p>
-                        </li>
-
-                        <li>
-                            <strong>Prague, Czechia (2023)</strong>
-                            <p class="text-muted mb-0">Erasmus mobility — strengthened my international adaptability.</p>
-                        </li>
-
-                        <li>
-                            <strong>Berlin, Germany (2025–2027)</strong>
-                            <p class="text-muted mb-0">Master’s in BIPM — transforming complex data into insights.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- RIGHT SIDE MAP -->
-            <div class="col-lg-6">
-                <div class="content-section" id="map_container">
-                    <div id="map_72c4811dbfae725b579be0ad5c01eedc"></div>
-                </div>
-            </div>
+    <!-- LEFT: ABOUT + TIMELINE -->
+    <div>
+      <div class="card fade-up delay-1" style="margin-bottom:20px">
+        <div class="section-title">
+          <h2>About Me</h2>
         </div>
+        <p class="muted">
+          I hold a Bachelor’s in Management Information Systems and I am currently pursuing a Master’s focused on business intelligence & process management. My background spans work across Turkey and Europe — from Ankara to Prague and now Berlin. I enjoy turning complex datasets into actionable insights and building workflows that empower teams.
+        </p>
+        <hr style="border:none;border-top:1px solid #f1f5ff;margin:16px 0">
+        <p class="muted"><strong>Specialties:</strong> Data Analysis · Process Improvement · SQL · Basic DevOps · Product Thinking · Stakeholder Communication</p>
+      </div>
+
+      <div class="card fade-up delay-2">
+        <div class="section-title">
+          <h2>Journey Timeline</h2>
+        </div>
+
+        <div class="timeline" aria-label="Timeline of locations and milestones">
+          <div class="milestone" role="article">
+            <div class="dot">I</div>
+            <div class="meta">
+              <h3>Istanbul — Origin</h3>
+              <p class="muted">Where my multicultural perspective started and curiosity was born.</p>
+            </div>
+          </div>
+
+          <div class="milestone" role="article">
+            <div class="dot">A</div>
+            <div class="meta">
+              <h3>Ankara — Bachelor's (2019–2024)</h3>
+              <p class="muted">Management Information Systems — focused on data analytics and business systems.</p>
+            </div>
+          </div>
+
+          <div class="milestone" role="article">
+            <div class="dot">P</div>
+            <div class="meta">
+              <h3>Prague — Erasmus (2023)</h3>
+              <p class="muted">International exchange that strengthened my cross-cultural collaboration skills.</p>
+            </div>
+          </div>
+
+          <div class="milestone" role="article">
+            <div class="dot">B</div>
+            <div class="meta">
+              <h3>Berlin — Master's (2025–2027)</h3>
+              <p class="muted">Advanced studies in business intelligence & process management while working in payroll and controlling.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- SAME MAP CODE YOU PROVIDED — ONLY TEXTS ARE IN ENGLISH -->
-    <script>
-        L_NO_TOUCH = false;
-        L_DISABLE_3D = false;
-        
-        var map_72c4811dbfae725b579be0ad5c01eedc = L.map("map_72c4811dbfae725b579be0ad5c01eedc", {
-            center: [40.0, 0.0],
-            zoom: 2.3,
-        });
+    <!-- RIGHT: MAP & CONTACT -->
+    <aside>
+      <div class="card fade-up delay-2" style="margin-bottom:18px">
+        <div class="section-title"><h2>Journey Map</h2></div>
+        <div id="map" role="img" aria-label="Map showing Istanbul, Ankara, Prague and Berlin"></div>
+        <div class="map-legend" aria-hidden="false">
+          <div class="legend-item"><i class="fas fa-home"></i> Origin</div>
+          <div class="legend-item"><i class="fas fa-graduation-cap"></i> Studies</div>
+          <div class="legend-item"><i class="fas fa-plane"></i> Exchange</div>
+          <div class="legend-item"><i class="fas fa-city"></i> Current</div>
+        </div>
+      </div>
 
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-            attribution: "© OpenStreetMap © CARTO"
-        }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+      <div class="card fade-up delay-3">
+        <div class="section-title"><h2>Contact</h2></div>
+        <p class="muted">I’m open to research collaborations, internships, and advising opportunities. Reach out via email or LinkedIn.</p>
 
-        var iconBlue = (icon) => L.AwesomeMarkers.icon({ markerColor: "blue", iconColor: "white", icon, prefix: "fa" });
+        <div class="contact-grid" style="margin-top:12px">
+          <div>
+            <strong>Email</strong>
+            <p class="muted" style="margin-top:6px">dfatmagul72@gmail.com</p>
+          </div>
+          <div>
+            <strong>Location</strong>
+            <p class="muted" style="margin-top:6px">Berlin, Germany</p>
+          </div>
+        </div>
 
-        var ist = L.marker([41.0082, 28.9784], { icon: iconBlue("house-user") }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        ist.bindPopup("I was born in Istanbul");
+        <div style="margin-top:18px;display:flex;gap:10px">
+          <a class="btn-primary" href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i> Email me</a>
+          <a class="btn-primary" href="#" style="background:#0f1724"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+      </div>
+    </aside>
 
-        var ank = L.marker([39.9334, 32.8597], { icon: iconBlue("graduation-cap") }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        ank.bindPopup("Bachelor’s Degree (2019–2024)");
+  </section>
 
-        var prg = L.marker([50.0755, 14.437], { icon: iconBlue("plane") }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        prg.bindPopup("Erasmus Exchange (2023)");
+  <footer>
+    © <strong>Fatma Gül Demirbaş</strong> — Built with ❤️ — Last updated 2025
+  </footer>
+</main>
 
-        var ber = L.marker([52.52, 13.405], { icon: iconBlue("chart-bar") }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        ber.bindPopup("Master’s Program (2025–2027)");
+<!-- MAP SCRIPT -->
+<script>
+  // Initialize map
+  const map = L.map('map', { zoomControl: true }).setView([45, 10], 3);
 
-        L.polyline([[41.0082, 28.9784],[39.9334, 32.8597]], { color: "blue" }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        L.polyline([[39.9334, 32.8597],[50.0755, 14.437]], { color: "blue" }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
-        L.polyline([[50.0755, 14.437],[52.52, 13.405]], { color: "blue" }).addTo(map_72c4811dbfae725b579be0ad5c01eedc);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '© OpenStreetMap contributors © CARTO'
+  }).addTo(map);
 
-    </script>
+  // Helper for icons (FontAwesome markers via DivIcon)
+  function createIcon(html, bg='#0b6cff'){
+    return L.divIcon({
+      html: '<div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:'+bg+';color:#fff;font-weight:700;font-size:14px">'+html+'</div>',
+      className: '',
+      iconSize: [36,36],
+      iconAnchor: [18,18]
+    });
+  }
+
+  // Markers
+  const ist = L.marker([41.0082, 28.9784], {icon:createIcon('I')}).addTo(map)
+    .bindPopup('<strong>Istanbul</strong><br>Origin');
+
+  const ank = L.marker([39.9334, 32.8597], {icon:createIcon('A','#0bbf7a')}).addTo(map)
+    .bindPopup('<strong>Ankara</strong><br>Bachelor (2019–2024)');
+
+  const prg = L.marker([50.0755, 14.437], {icon:createIcon('P','#ff6b6b')}).addTo(map)
+    .bindPopup('<strong>Prague</strong><br>Erasmus (2023)');
+
+  const ber = L.marker([52.52, 13.405], {icon:createIcon('B','#6b5cff')}).addTo(map)
+    .bindPopup('<strong>Berlin</strong><br>Master (2025–2027)');
+
+  // Path lines
+  L.polyline([[41.0082, 28.9784],[39.9334,32.8597],[50.0755,14.437],[52.52,13.405]], {color:'#0b6cff',weight:3,opacity:0.6}).addTo(map);
+
+  // Fit bounds nicely
+  const group = L.featureGroup([ist,ank,prg,ber]);
+  map.fitBounds(group.getBounds().pad(0.8));
+
+  // Accessibility: focus opening popup on keyboard navigation (basic)
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'm'){ // press 'm' to open map overview
+      map.invalidateSize();
+      map.fitBounds(group.getBounds().pad(0.6));
+    }
+  });
+</script>
+
 </body>
 </html>
