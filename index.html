@@ -1,256 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fatma Gül Demirbaş — Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatma Gül Demirbaş</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto+Mono:wght@400&display=swap" rel="stylesheet">
+<!-- CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css" />
 
-  <style>
-    /* Mat Rothenberg Sitesinden İlham Alan Sade Stil */
-    :root {
-      /* Çok koyu arka plan */
-      --bg: #0A0A0A;
-      /* Açık, keskin metin */
-      --text: #F0F0F0;
-      /* Vurgu rengi (Bağlantılar için hafif bir kontrast) */
-      --accent: #00e5ff; /* Orijinal kodu koruyarak, daha az baskın kullanacağız */
-      --muted: #888;
-      --maxw: 700px; /* Daha dar bir içerik sütunu */
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-      background: var(--bg); 
-      color: var(--text); 
-      font-family: 'Inter', sans-serif; 
-      line-height: 1.6;
-      font-size: 18px; /* Daha okunaklı metin */
-    }
-    a { 
-      color: var(--accent); 
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    a:hover { color: var(--text); }
+<style>
+/* ===== Base Styles ===== */
+:root {
+    --main-color: #00ffcc;
+    --bg-color: #0d0d0d;
+    --text-color: #e0e0e0;
+    --accent-color: #00ffcc;
+}
 
-    .container { 
-      max-width: var(--maxw); 
-      margin: auto; 
-      padding: 40px 20px; 
-    }
+body {
+    margin:0;
+    font-family: 'Fira Code', monospace;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
 
-    /* Başlık stili: Mat Rothenberg'in büyük '##' başlıklarını taklit eder */
-    .section-title {
-      font-family: 'Inter', sans-serif;
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-top: 60px;
-      margin-bottom: 24px;
-      padding-top: 20px;
-      border-top: 1px solid var(--muted); /* Bölücü çizgi */
-    }
-    .section-title::before {
-      content: "## ";
-      color: var(--muted);
-      font-size: 1.1em;
-      margin-right: 5px;
-    }
+/* ===== Hero ===== */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 
-    /* HERO - Basitleştirilmiş */
-    header.hero {
-      padding: 40px 0;
-      margin-bottom: 40px;
-    }
-    header.hero h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    header.hero .typing {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 1.1rem;
-      color: var(--muted);
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 2px solid var(--accent);
-      width: 0;
-      animation: typing 4s steps(40) forwards, blink 1s infinite step-end alternate;
-      margin-top: 20px;
-    }
-    @keyframes typing { from { width: 0; } to { width: 100%; } }
-    @keyframes blink { 50% { border-color: transparent; } }
+.hero h1 {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
 
-    /* ABOUT - Resim ve Metin Yan Yana */
-    .about {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-      align-items: flex-start;
-      margin-top: 40px;
-    }
-    .about .image { 
-      flex: 1; 
-      min-width: 150px; 
-      max-width: 200px; /* Daha küçük görsel */
-      border: none; /* Kenarlık kaldırıldı */
-    }
-    .about .image img {
-      width: 100%;
-      border-radius: 0; /* Yuvarlaklık kaldırıldı */
-      border: none; /* Kenarlık kaldırıldı */
-      filter: grayscale(100%); /* Hafif terminal efekti */
-    }
-    .about .text { 
-      flex: 3; 
-      min-width: 300px; 
-    }
-    .about p { margin-bottom: 1em; }
+.hero p {
+    font-size: 1.2rem;
+    color: #aaa;
+}
 
-    /* JOURNEY - Basit liste görünümü */
-    .journey-list {
-      list-style: none;
-    }
-    .journey-list li {
-      margin-bottom: 10px;
-      padding-left: 20px;
-      position: relative;
-    }
-    .journey-list li::before {
-      content: "•";
-      color: var(--accent);
-      position: absolute;
-      left: 0;
-    }
+/* ===== About Section ===== */
+.section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
 
-    /* PROJECTS - Sadece metin blokları */
-    .projects {
-      display: block;
-    }
-    .project-card {
-      background: transparent; /* Arka plan kaldırıldı */
-      padding: 0;
-      border: none; /* Kenarlık kaldırıldı */
-      margin-bottom: 30px;
-      transition: none;
-    }
-    .project-card:hover {
-      transform: none;
-    }
-    .project-card h4 {
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin-bottom: 5px;
-    }
-    .project-card p { 
-      color: var(--muted); 
-      font-size: 0.95rem;
-    }
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+}
 
-    .contact {
-      text-align: left; /* Mat Rothenberg'in sitesine uyması için sola hizalandı */
-      color: var(--text);
-    }
-    .contact p { margin-bottom: 10px; }
+.about img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--accent-color);
+}
 
-    footer {
-      margin-top: 80px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.8rem;
-      padding-top: 20px;
-      border-top: 1px dashed var(--muted);
-    }
+.about-text {
+    flex:1;
+}
 
-    /* Leaflet CSS kaldırıldı */
-  </style>
+.about-text h2 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.about-text ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-text ul li {
+    margin-bottom: 0.8rem;
+}
+
+/* ===== Map Section ===== */
+#map {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+/* ===== Hobbies / Interests ===== */
+.hobbies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.hobby-card {
+    background-color: #111;
+    padding: 20px;
+    border-radius: 12px;
+    width: 180px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.hobby-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px var(--accent-color);
+}
+
+/* ===== Contact Section ===== */
+.contact {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.contact a {
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.contact a:hover {
+    color: #fff;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+</style>
+
 </head>
-
 <body>
-  <div class="container">
-        <header class="hero">
-      <h1>Fatma Gül Demirbaş</h1>
-      <div class="typing" id="typing"></div>
-    </header>
 
-    <div class="about" id="about">
-      <div class="image">
-        <img src="your-photo.jpg" alt="Fatma Gül Demirbaş">
-      </div>
-      <div class="text">
-        <p>I’m a **data & process enthusiast**. With a Bachelor’s in MIS, I now live in Berlin and study Business Intelligence & Process Management. I build scalable systems, analyze data deeply, and love crafting efficient workflows.</p>
-        <p>I like my data clean, my systems robust, and my [code](https://github.com) functional.</p>
-      </div>
-    </div>
-    
-        <section id="journey">
-      <h2 class="section-title">My Journey</h2>
-      <ul class="journey-list">
-        <li>**Istanbul** — Origin</li>
-        <li>**Ankara** — Bachelor (MIS, 2019‑2024)</li>
-        <li>**Prague** — Erasmus (2023)</li>
-        <li>**Berlin** — Master (Business Intelligence & Process Management, 2025‑2027)</li>
-      </ul>
-    </section>
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Fatma Gül Demirbaş</h1>
+    <p>Global experience in Data, Tech & Process Management | Travel addict & Photography enthusiast</p>
+</section>
 
-        <section id="projects">
-      <h2 class="section-title">Projects & Code</h2>
-      <div class="projects">
-        <div class="project-card">
-          <h4>Data Pipeline for E-commerce Analytics</h4>
-          <p>Built a robust ETL pipeline using Python and Postgres to track user behavior and conversion rates. Focused on optimizing query speed.</p>
-        </div>
-        <div class="project-card">
-          <h4>Process Mining for Logistics</h4>
-          <p>Used Celonis/Disco to analyze a logistics company's ordering process, identifying a 15% reduction in unnecessary cycle time.</p>
-        </div>
-      </div>
-    </section>
+<!-- About Section -->
+<section class="section about">
+    <img src="https://via.placeholder.com/200" alt="Profile Picture">
+    <div class="about-text">
+        <h2>About Me</h2>
+        <ul>
+            <li>🌍 I love traveling and exploring new cultures.</li>
+            <li>📸 Passionate about photography and capturing moments.</li>
+            <li>🍳 Master in cooking delicious meals.</li>
+            <li>📺 Guilty pleasure: Reality TV shows.</li>
+            <li>💻 Professional focus: Business Intelligence & Process Management.</li>
+        </ul>
+    </div>
+</section>
 
-        <section class="contact" id="contact">
-      <h2 class="section-title">Get in Touch</h2>
-      <p>Email: <a href="mailto:dfatmagul72@gmail.com">dfatmagul72@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com" target="_blank">My LinkedIn Profile</a></p>
-    </section>
+<!-- Map Section -->
+<section class="section">
+    <h2 style="color: var(--accent-color); text-align:center;">My Journey</h2>
+    <div id="map"></div>
+</section>
 
-    <footer>© 2025 Fatma Gül Demirbaş | Made to resemble a markdown file.</footer>
-  </div>
+<!-- Hobbies Section -->
+<section class="section hobbies">
+    <div class="hobby-card"><i class="fas fa-plane"></i><p>Traveling</p></div>
+    <div class="hobby-card"><i class="fas fa-camera"></i><p>Photography</p></div>
+    <div class="hobby-card"><i class="fas fa-utensils"></i><p>Cooking</p></div>
+    <div class="hobby-card"><i class="fas fa-tv"></i><p>Reality Shows</p></div>
+    <div class="hobby-card"><i class="fas fa-code"></i><p>Coding & Tech</p></div>
+</section>
 
-      <script>
-    // Typing effect
-    const texts = [
-      "I build data-driven systems.",
-      "I turn insights into impact.",
-      "I design processes that scale."
-    ];
-    let index = 0, subIndex = 0;
-    const typingElem = document.getElementById('typing');
-    function type() {
-      if (subIndex < texts[index].length) {
-        typingElem.textContent += texts[index].charAt(subIndex);
-        subIndex++;
-        setTimeout(type, 100);
-      } else {
-        setTimeout(erase, 2000);
-      }
-    }
-    function erase() {
-      if (subIndex > 0) {
-        typingElem.textContent = texts[index].substring(0, subIndex - 1);
-        subIndex--;
-        setTimeout(erase, 50);
-      } else {
-        index = (index + 1) % texts.length;
-        setTimeout(type, 500);
-      }
-    }
-    type();
+<!-- Contact Section -->
+<section class="contact">
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i></a>
+</section>
 
-    // Leaflet harita kodu, Mat Rothenberg'in minimalizm stiline uymadığı için kaldırılmıştır.
-  </script>
+<footer>
+    © 2025 Fatma Gül Demirbaş. All Rights Reserved.
+</footer>
+
+<!-- JS -->
+<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+<script>
+// Map Initialization
+var map = L.map('map').setView([41.0, 28.9], 2);
+
+// Tile Layer
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+    subdomains: 'abc'
+}).addTo(map);
+
+// Icons
+var icon = L.AwesomeMarkers.icon({icon: 'map-marker-alt', prefix: 'fa', markerColor: 'darkblue', iconColor: 'white'});
+
+// Markers
+var locations = [
+    {lat:41.0082, lng:28.9784, title:'Istanbul, Turkey', desc:'Birthplace'},
+    {lat:39.9334, lng:32.8597, title:'Ankara, Turkey', desc:'Bachelor MIS 2019-2024'},
+    {lat:50.0755, lng:14.437, title:'Prague, Czech Republic', desc:'Erasmus Exchange 2023'},
+    {lat:52.52, lng:13.405, title:'Berlin, Germany', desc:'Master BIPM 2025-2027'}
+];
+
+locations.forEach(function(loc){
+    var marker = L.marker([loc.lat, loc.lng], {icon: icon}).addTo(map);
+    marker.bindPopup('<b>'+loc.title+'</b><br>'+loc.desc);
+    marker.bindTooltip(loc.title, {sticky:true});
+});
+
+// Lines
+var latlngs = locations.map(l => [l.lat, l.lng]);
+L.polyline(latlngs, {color:'cyan', weight:3, opacity:0.7}).addTo(map);
+
+</script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
 </body>
 </html>
