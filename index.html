@@ -3,53 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fatma Gül Demirbaş – One Page Journey</title>
+  <title>Fatma Gül Demirbaş – Business Analyst & Data Enthusiast</title>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css" />
 
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
   <style>
+    /* CSS Değişkenleri (Gelişmiş Renk ve Gölge) */
     :root {
-      --bg: #fafafa;
+      --bg: #f9f9f9; /* Daha yumuşak beyaz */
       --text: #333;
-      --accent: #0077cc;
-      --muted: #666;
+      --accent: #008899; /* Profesyonel Turkuaz (Veri/Analiz) */
+      --muted: #555; /* Daha iyi kontrast */
       --radius: 8px;
       --maxw: 900px;
+      --shadow-base: 0 6px 16px rgba(0, 0, 0, 0.08); /* Yumuşak gölge */
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 
-    .container { max-width: var(--maxw); margin: auto; padding: 60px 20px; }
+    .container { 
+      max-width: var(--maxw); 
+      margin: auto; 
+      padding: 60px 20px; 
+      padding-top: 100px; /* Sabit navigasyon için boşluk */
+    }
 
     section { margin-bottom: 80px; }
 
     .section-title {
       font-size: 2rem;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--accent);
       text-align: center;
       margin-bottom: 24px;
+      padding-bottom: 5px;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+      display: inline-block;
+    }
+
+    /* Yapışkan Navigasyon (Yeni Eklendi) */
+    .sticky-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      padding: 15px 0;
+      z-index: 1000;
+      text-align: center;
+    }
+    .sticky-nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .sticky-nav a:hover {
+      color: var(--accent);
     }
 
     /* Hero */
     header.hero {
       text-align: center;
-      padding: 100px 20px;
+      padding: 50px 20px 80px;
     }
     header.hero h1 {
-      font-size: clamp(32px, 8vw, 64px);
-      margin-bottom: 16px;
+      font-size: clamp(32px, 8vw, 48px);
+      margin-bottom: 12px;
+      font-weight: 700;
+      line-height: 1.2;
     }
     header.hero p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: var(--muted);
-      max-width: 600px;
+      max-width: 700px;
       margin: auto;
+      font-weight: 500; /* Vurgulandı */
     }
 
     /* About */
@@ -57,7 +93,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 40px;
-      align-items: center;
+      align-items: flex-start; /* İçerik yukarıdan hizalandı */
     }
     .about .image {
       flex: 1;
@@ -67,18 +103,29 @@
       width: 100%;
       border-radius: var(--radius);
       object-fit: cover;
+      box-shadow: var(--shadow-base); /* Gölge Eklendi */
     }
     .about .text {
       flex: 2;
       min-width: 280px;
     }
     .about .text ul {
-      list-style: disc;
-      padding-left: 20px;
+      list-style: none; /* Noktalar Kaldırıldı */
+      padding-left: 0; 
       color: var(--text);
     }
     .about .text li {
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .about .text li::before {
+        content: '•'; /* Liste İşareti İkonla Değiştirildi */
+        color: var(--accent);
+        font-weight: bold;
+        display: inline-block; 
+        width: 1em;
+        margin-left: -1em;
     }
 
     /* Map */
@@ -87,6 +134,7 @@
       height: 450px;
       border: 1px solid #ccc;
       border-radius: var(--radius);
+      box-shadow: var(--shadow-base);
     }
 
     /* Cards for Interests */
@@ -99,31 +147,55 @@
       background: white;
       padding: 24px;
       border-radius: var(--radius);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow-base);
       text-align: center;
       transition: transform 0.3s, box-shadow 0.3s;
     }
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Daha belirgin hover */
     }
     .card h4 {
       margin-bottom: 12px;
       color: var(--accent);
       font-weight: 600;
+      font-size: 1.1rem;
     }
     .card p {
-      color: var(--text);
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
     /* Contact */
     .contact {
       text-align: center;
     }
-    .contact a {
+    .contact .links a {
       font-size: 1.2rem;
       margin: 0 12px;
       color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .contact .links a:hover {
+      color: var(--text);
+    }
+    .download-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: var(--accent);
+      color: white !important; /* !important eklenerek üstteki a stilini ezdi */
+      text-decoration: none;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.3s, transform 0.1s;
+      margin-top: 25px;
+    }
+    .download-btn:hover {
+      background-color: #006677; 
+      color: white;
+      transform: translateY(-2px);
     }
 
     footer {
@@ -131,97 +203,127 @@
       color: var(--muted);
       font-size: 0.9rem;
       padding: 20px;
+      margin-top: 40px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
     }
 
     @media (max-width: 700px) {
       .about { flex-direction: column; }
       .about .image, .about .text { min-width: 100%; }
+      .container { padding-top: 80px; } /* Mobil menü boşluğu azaltıldı */
+      .sticky-nav a { margin: 0 8px; font-size: 0.9rem; }
     }
   </style>
 </head>
 <body>
+  
+  <nav class="sticky-nav">
+    <a href="#about">About Me</a>
+    <a href="#journey">My Journey</a>
+    <a href="#interests">Interests</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
   <div class="container">
-    <!-- Hero -->
+    
     <header class="hero">
-      <h1>Fatma Gül Demirbaş</h1>
-      <p>I navigate the world with data, a camera in my hand, and a heart open to new adventures.</p>
+      <h1>Fatma Gül Demirbaş, Business Analyst & Data Enthusiast</h1>
+      <p>I design **efficient processes** using **Business Intelligence** tools, while exploring the world with a camera and seeking cultural depth.</p>
     </header>
 
-    <!-- About Me -->
-    <section class="about">
+    <section id="about" class="about">
       <div class="image">
-        <img src="https://via.placeholder.com/300" alt="Profile Photo">
+        <img src="https://via.placeholder.com/400x500?text=Profile+Photo" alt="Fatma Gül Demirbaş Profile Photo">
       </div>
       <div class="text">
         <div class="section-title">About Me</div>
-        <ul>
+        <p style="margin-bottom: 20px;">I specialize in Business Intelligence and Process Management, driven by a passion for creating clear, data-informed strategies. When I'm not optimizing workflows, my time is dedicated to capturing the world's beauty and experimenting in the kitchen.</p>
+        
+        <ul style="margin-top: 25px;">
           <li>I love traveling to discover new cultures.</li>
           <li>Photography is my way of freezing beautiful moments.</li>
           <li>I’m quite skilled in cooking — love experimenting.</li>
           <li>Guilty pleasure: Binge‑watching reality shows.</li>
-          <li>I specialize in Business Intelligence & Process Management.</li>
+          <li>Current focus: Mastering advanced data visualization techniques.</li>
         </ul>
       </div>
     </section>
 
-    <!-- My Journey / Map -->
     <section id="journey">
       <div class="section-title">My Journey</div>
       <div id="map"></div>
     </section>
 
-    <!-- Interests -->
     <section id="interests">
       <div class="section-title">What I Enjoy</div>
       <div class="cards">
-        <div class="card"><h4>Travel</h4><p>Seeing the world, one country at a time.</p></div>
-        <div class="card"><h4>Photography</h4><p>Capturing stories through my lens.</p></div>
-        <div class="card"><h4>Cooking</h4><p>Creating flavors and experimenting in the kitchen.</p></div>
-        <div class="card"><h4>Reality Shows</h4><p>My secret, addictive guilty pleasure.</p></div>
-        <div class="card"><h4>Data & Processes</h4><p>I love building efficient systems.</p></div>
+        <div class="card"><h4><i class="fas fa-chart-line"></i> Data & Processes</h4><p>I love building efficient systems and finding insights in data.</p></div>
+        <div class="card"><h4><i class="fas fa-plane"></i> Travel</h4><p>Seeing the world, one country at a time, for inspiration and perspective.</p></div>
+        <div class="card"><h4><i class="fas fa-camera"></i> Photography</h4><p>Capturing stories and moments through my lens with a focus on human connection.</p></div>
+        <div class="card"><h4><i class="fas fa-utensils"></i> Cooking</h4><p>Creating flavors and experimenting in the kitchen—a perfect blend of science and art.</p></div>
+        <div class="card"><h4><i class="fas fa-book-reader"></i> Learning</h4><p>Continuously seeking knowledge, especially in emerging tech and cultural history.</p></div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section class="contact">
+    <section id="contact" class="contact">
       <div class="section-title">Contact</div>
-      <p>
+      <div class="links">
         <a href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i> Email</a>
         <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-      </p>
+        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      </div>
+      <a href="/fatma-gul-cv.pdf" target="_blank" class="download-btn">Download CV (PDF)</a>
     </section>
 
-    <footer>© 2025 Fatma Gül Demirbaş</footer>
+    <footer>© 2025 Fatma Gül Demirbaş. All rights reserved.</footer>
   </div>
 
-  <!-- Leaflet JS -->
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map').setView([45, 10], 3);
+    // CSS'te tanımlı --accent rengini çekme
+    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+
+    const map = L.map('map').setView([45, 10], 3); // Harita merkezini global bir konuma ayarlama
+    
+    // Harita katmanı (daha nötr bir görünüm için)
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
       attribution: '&copy; OpenStreetMap &copy; CARTO',
-      subdomains: 'abc'
+      subdomains: 'abc',
+      maxZoom: 18
     }).addTo(map);
 
     const locations = [
-      { coords: [41.0082, 28.9784], title: 'Istanbul, Turkey', desc: 'Origin' },
+      { coords: [41.0082, 28.9784], title: 'Istanbul, Turkey', desc: 'Origin / Base' },
       { coords: [39.9334, 32.8597], title: 'Ankara, Turkey', desc: 'Studied MIS (2019‑2024)' },
       { coords: [50.0755, 14.437], title: 'Prague, Czech Republic', desc: 'Erasmus 2023' },
       { coords: [52.52, 13.405], title: 'Berlin, Germany', desc: 'Master BIPM (2025‑2027)' }
     ];
 
     locations.forEach(loc => {
-      L.marker(loc.coords).addTo(map)
+      L.marker(loc.coords, {
+          icon: L.divIcon({
+              className: 'custom-pin', // Özel pin stilini kullanır
+              html: `<div style="background-color: ${accentColor}; width: 15px; height: 15px; border-radius: 50%; border: 3px solid white;"></div>`
+          })
+      }).addTo(map)
         .bindPopup(`<strong>${loc.title}</strong><br>${loc.desc}`)
-        .bindTooltip(loc.title, {sticky: true});
+        .bindTooltip(loc.title, {sticky: true, className: 'custom-tooltip'});
     });
 
     const coords = locations.map(l => l.coords);
-    L.polyline(coords, { color: varColor = '#0077cc', weight: 3, opacity: 0.6 }).addTo(map);
-  </script>
+    
+    // Harita Çizgisi Rengi CSS Değişkeni ile Senkronize Edildi
+    L.polyline(coords, { color: accentColor, weight: 4, opacity: 0.7 }).addTo(map); 
 
-  <!-- FontAwesome -->
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    // Yumuşak Kaydırma (Smooth Scrolling) Eklendi
+    document.querySelectorAll('.sticky-nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+  </script>
 </body>
 </html>
