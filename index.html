@@ -1,81 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fatma Gül Demirbaş — My Digital Journey</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fatma Gül Demirbaş — My Code Journey</title>
 
   <!-- Fontlar -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <!-- Leaflet -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
 
   <style>
     :root {
-      --bg: #0f111a;
+      --bg: #121212;
       --text: #e0e0e0;
-      --accent: #00ffea;
+      --accent: #00e5ff;
       --muted: #888;
       --radius: 8px;
-      --maxw: 1000px;
+      --maxw: 900px;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; }
-    a { color: var(--accent); text-decoration:none; }
-    .container { max-width: var(--maxw); margin:auto; padding: 60px 20px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    .container { max-width: var(--maxw); margin: auto; padding: 40px 20px; }
 
-    /* HERO */
     header.hero {
-      text-align:center; padding:120px 20px;
+      text-align: center;
+      padding: 100px 20px;
     }
     header.hero h1 {
-      font-family:'Roboto Mono', monospace;
-      font-size:clamp(36px, 6vw, 64px);
-      color: var(--accent); margin-bottom:16px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: clamp(32px, 6vw, 60px);
+      color: var(--accent);
+      margin-bottom: 16px;
     }
     header.hero .typing {
-      font-family:'Roboto Mono', monospace;
-      font-size:1.1rem; color: var(--muted);
-      white-space:nowrap; overflow:hidden;
-      border-right:2px solid var(--accent);
-      width:0;
-      animation: typing 4s steps(50) forwards, blink 1s infinite step-end alternate;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.1rem;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid var(--accent);
+      width: 0;
+      animation: typing 4s steps(40) forwards, blink 1s infinite step-end alternate;
     }
-    @keyframes typing { from{width:0;} to{width:100%;} }
-    @keyframes blink {50%{border-color:transparent;}}
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes blink { 50% { border-color: transparent; } }
 
-    section { margin-top:80px; }
-    .section-title { text-align:center; font-size:1.6rem; color: var(--accent); margin-bottom:24px; }
+    section { margin-top: 80px; }
+    .section-title {
+      text-align: center;
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
 
-    /* ABOUT */
-    .about { display:flex; flex-wrap:wrap; gap:30px; align-items:center; }
-    .about .image { flex:1; min-width:250px; }
-    .about .image img { width:100%; border-radius: var(--radius); border:2px solid var(--accent); }
-    .about .text { flex:2; min-width:280px; }
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+    }
+    .about .image { flex: 1; min-width: 250px; }
+    .about .image img {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 2px solid var(--accent);
+    }
+    .about .text { flex: 2; min-width: 280px; color: var(--text); }
 
-    /* MAP */
-    #map { height:450px; border-radius: var(--radius); border:2px solid var(--accent); }
+    /* Map için stil */
+    #map { height: 450px; border-radius: var(--radius); border: 2px solid var(--accent); }
 
-    /* HOBBIES / INTERESTS */
-    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px; }
-    .card { background:#1b1d2a; padding:20px; border-radius: var(--radius); border:1px solid #333; transition: transform 0.3s, border-color 0.3s; }
-    .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-    .card h4 { font-family:'Roboto Mono', monospace; color: var(--accent); margin-bottom:12px; }
-    .card p { color: var(--text); }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .project-card {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: var(--radius);
+      border: 1px solid #333;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+    .project-card h4 {
+      font-family: 'Roboto Mono', monospace;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .project-card p { color: var(--text); }
 
-    /* CONTACT */
-    .contact { text-align:center; color: var(--text); margin-top:50px; }
-    .contact a { color: var(--accent); font-size:1rem; margin:0 10px; }
+    .contact {
+      text-align: center;
+      color: var(--text);
+    }
+    .contact a { color: var(--accent); font-size: 1rem; }
 
-    footer { margin-top:80px; text-align:center; color: var(--muted); font-size:0.9rem; }
-
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
   </style>
 </head>
+
 <body>
-
   <div class="container">
-
     <!-- HERO -->
     <header class="hero">
       <h1>Hi, I’m <strong>Fatma Gül Demirbaş</strong></h1>
@@ -89,24 +126,28 @@
       </div>
       <div class="text">
         <div class="section-title">About Me</div>
-        <p>I love traveling ✈️, capturing life through photography 📸, and I’m a master in cooking 🍳. Guilty pleasure: binge-watching reality shows 😅. Currently living in Berlin, studying BIPM and building efficient systems in data and process management.</p>
+        <p>I’m a data & process enthusiast. With a Bachelor’s in MIS, I now live in Berlin and study Business Intelligence & Process Management. I build scalable systems, analyze data deeply, and love crafting efficient workflows.</p>
       </div>
     </section>
 
-    <!-- JOURNEY / MAP -->
+    <!-- JOURNEY + MAP -->
     <section id="journey">
       <div class="section-title">My Journey</div>
       <div id="map"></div>
     </section>
 
-    <!-- HOBBIES / INTERESTS -->
-    <section id="hobbies">
-      <div class="section-title">Fun & Interests</div>
-      <div class="cards">
-        <div class="card"><h4>Traveling</h4><p>Exploring new cities and cultures fuels my creativity.</p></div>
-        <div class="card"><h4>Photography</h4><p>Capturing moments and memories is my passion.</p></div>
-        <div class="card"><h4>Cooking Mastery</h4><p>Love experimenting in the kitchen — I can cook anything!</p></div>
-        <div class="card"><h4>Guilty Pleasure</h4><p>Binge-watching reality shows when I need a fun break.</p></div>
+    <!-- PROJECTS / PHOTOS -->
+    <section id="projects">
+      <div class="section-title">Projects & Memories</div>
+      <div class="projects">
+        <div class="project-card">
+          <h4>Project One</h4>
+          <p>Short description of a project or memory.</p>
+        </div>
+        <div class="project-card">
+          <h4>Project Two</h4>
+          <p>Another interesting project or life moment.</p>
+        </div>
       </div>
     </section>
 
@@ -114,53 +155,71 @@
     <section class="contact" id="contact">
       <div class="section-title">Get in Touch</div>
       <p>Email: <a href="mailto:dfatmagul72@gmail.com">dfatmagul72@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com" target="_blank">LinkedIn</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com" target="_blank">My LinkedIn</a></p>
     </section>
 
     <footer>© 2025 Fatma Gül Demirbaş</footer>
   </div>
 
-  <!-- Leaflet + JS -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
-
   <script>
     // Typing effect
     const texts = [
-      "I travel ✈️, I capture 📸, I cook 🍳, I code 💻",
-      "Turning data into insights and impact.",
-      "Living in Berlin and loving the journey."
+      "I build data-driven systems.",
+      "I turn insights into impact.",
+      "I design processes that scale."
     ];
-    let index=0, subIndex=0;
-    const typingElem=document.getElementById('typing');
+    let index = 0, subIndex = 0;
+    const typingElem = document.getElementById('typing');
     function type() {
-      if(subIndex<texts[index].length){ typingElem.textContent+=texts[index].charAt(subIndex); subIndex++; setTimeout(type,100); }
-      else { setTimeout(erase,2000); }
+      if (subIndex < texts[index].length) {
+        typingElem.textContent += texts[index].charAt(subIndex);
+        subIndex++;
+        setTimeout(type, 100);
+      } else {
+        setTimeout(erase, 2000);
+      }
     }
     function erase() {
-      if(subIndex>0){ typingElem.textContent=texts[index].substring(0,subIndex-1); subIndex--; setTimeout(erase,50); }
-      else { index=(index+1)%texts.length; setTimeout(type,500); }
+      if (subIndex > 0) {
+        typingElem.textContent = texts[index].substring(0, subIndex - 1);
+        subIndex--;
+        setTimeout(erase, 50);
+      } else {
+        index = (index + 1) % texts.length;
+        setTimeout(type, 500);
+      }
     }
     type();
 
-    // Leaflet Map
-    const map = L.map('map').setView([45,10],3);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{ attribution:'&copy; OpenStreetMap © CARTO' }).addTo(map);
+    // Leaflet harita
+    const map = L.map('map').setView([45, 10], 3);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap © CARTO'
+    }).addTo(map);
 
-    const iconOpts={ icon:'star', markerColor:'blue', iconColor:'white', prefix:'fa' };
-    const locations=[
-      {lat:41.0082,lng:28.9784,title:'Istanbul — Origin'},
-      {lat:39.9334,lng:32.8597,title:'Ankara — Bachelor (2019‑2024)'},
-      {lat:50.0755,lng:14.437,title:'Prague — Erasmus (2023)'},
-      {lat:52.52,lng:13.405,title:'Berlin — Master (2025‑2027)'}
+    // Marker’lar
+    const iconOpts = {
+      icon: 'star',
+      markerColor: 'blue',
+      iconColor: 'white',
+      prefix: 'fa'
+    };
+    const locations = [
+      { lat: 41.0082, lng: 28.9784, title: 'Istanbul — Origin' },
+      { lat: 39.9334, lng: 32.8597, title: 'Ankara — Bachelor (2019‑2024)' },
+      { lat: 50.0755, lng: 14.437, title: 'Prague — Erasmus (2023)' },
+      { lat: 52.52, lng: 13.405, title: 'Berlin — Master (2025‑2027)' }
     ];
-    locations.forEach(loc=>{
-      const marker=L.marker([loc.lat,loc.lng],L.AwesomeMarkers.icon(iconOpts)).addTo(map);
+    locations.forEach(loc => {
+      const marker = L.marker([loc.lat, loc.lng], L.AwesomeMarkers.icon(iconOpts)).addTo(map);
       marker.bindPopup(`<strong>${loc.title}</strong>`);
     });
-    const coords=locations.map(l=>[l.lat,l.lng]);
-    L.polyline(coords,{color:'#00ffea',weight:2,opacity:0.7}).addTo(map);
-  </script>
 
+    const coords = locations.map(l => [l.lat, l.lng]);
+    L.polyline(coords, { color: varColor = '#00e5ff', weight: 2, opacity: 0.7 }).addTo(map);
+  </script>
 </body>
 </html>
