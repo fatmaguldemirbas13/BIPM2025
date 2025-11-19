@@ -1,234 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fatma Gül Demirbaş</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fatma Gül Demirbaş — My Journey</title>
 
-<!-- CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-<style>
-/* ===== Base Styles ===== */
-:root {
-    --main-color: #00ffcc;
-    --bg-color: #0d0d0d;
-    --text-color: #e0e0e0;
-    --accent-color: #00ffcc;
-}
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css" />
 
-body {
-    margin:0;
-    font-family: 'Fira Code', monospace;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    overflow-x: hidden;
-}
+  <style>
+    /* ===== Global Styles ===== */
+    :root {
+      --bg: #ffffff;
+      --text: #333333;
+      --accent: #0077cc;
+      --muted: #666666;
+      --radius: 8px;
+      --maxw: 900px;
+    }
 
-/* ===== Hero ===== */
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-.hero h1 {
-    font-size: 3rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-.hero p {
-    font-size: 1.2rem;
-    color: #aaa;
-}
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-/* ===== About Section ===== */
-.section {
-    padding: 80px 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-}
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
 
-.about {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    align-items: center;
-}
+    section {
+      margin-bottom: 80px;
+    }
 
-.about img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 4px solid var(--accent-color);
-}
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 24px;
+      text-align: center;
+    }
 
-.about-text {
-    flex:1;
-}
+    /* ===== Hero ===== */
+    header.hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 60vh;
+      text-align: center;
+      padding: 20px;
+    }
 
-.about-text h2 {
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
+    header.hero h1 {
+      font-size: clamp(32px, 8vw, 64px);
+      margin-bottom: 16px;
+    }
 
-.about-text ul {
-    list-style: none;
-    padding: 0;
-}
+    header.hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 600px;
+    }
 
-.about-text ul li {
-    margin-bottom: 0.8rem;
-}
+    /* ===== About ===== */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+    }
 
-/* ===== Map Section ===== */
-#map {
-    width: 100%;
-    height: 500px;
-    border-radius: 10px;
-    margin-top: 40px;
-}
+    .about .image {
+      flex: 1;
+      min-width: 250px;
+    }
 
-/* ===== Hobbies / Interests ===== */
-.hobbies {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
+    .about .image img {
+      width: 100%;
+      border-radius: var(--radius);
+      object-fit: cover;
+    }
 
-.hobby-card {
-    background-color: #111;
-    padding: 20px;
-    border-radius: 12px;
-    width: 180px;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
+    .about .text {
+      flex: 2;
+      min-width: 280px;
+    }
 
-.hobby-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px var(--accent-color);
-}
+    .about .text ul {
+      list-style: disc;
+      margin-left: 20px;
+      color: var(--text);
+    }
 
-/* ===== Contact Section ===== */
-.contact {
-    text-align: center;
-    padding: 60px 20px;
-}
+    .about .text ul li {
+      margin-bottom: 0.8rem;
+    }
 
-.contact a {
-    color: var(--accent-color);
-    font-size: 1.5rem;
-    margin: 0 15px;
-    transition: color 0.3s;
-}
+    /* ===== Map ===== */
+    #map {
+      width: 100%;
+      height: 450px;
+      border-radius: var(--radius);
+      border: 1px solid #ccc;
+    }
 
-.contact a:hover {
-    color: #fff;
-}
+    /* ===== Interests / Hobbies ===== */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
 
-/* ===== Footer ===== */
-footer {
-    text-align: center;
-    padding: 30px 20px;
-    font-size: 0.9rem;
-    color: #666;
-}
-</style>
+    .card {
+      background: #f7f7f7;
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h4 {
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .card p {
+      color: var(--text);
+    }
+
+    /* ===== Contact ===== */
+    .contact {
+      text-align: center;
+    }
+
+    .contact a {
+      font-size: 1.2rem;
+      margin: 0 12px;
+      color: var(--accent);
+      transition: color 0.3s;
+    }
+
+    .contact a:hover {
+      color: darken(var(--accent), 10%);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .about {
+        flex-direction: column;
+      }
+      .about .image, .about .text {
+        min-width: 100%;
+      }
+    }
+
+  </style>
 </head>
 <body>
 
-<!-- Hero Section -->
-<section class="hero">
-    <h1>Fatma Gül Demirbaş</h1>
-    <p>Global experience in Data, Tech & Process Management | Travel addict & Photography enthusiast</p>
-</section>
+  <div class="container">
 
-<!-- About Section -->
-<section class="section about">
-    <img src="https://via.placeholder.com/200" alt="Profile Picture">
-    <div class="about-text">
-        <h2>About Me</h2>
+    <!-- HERO -->
+    <header class="hero">
+      <h1>Fatma Gül Demirbaş</h1>
+      <p>I’m passionate about traveling, photography, data, and building meaningful systems.</p>
+    </header>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="image">
+        <!-- Placeholder image; değiştir senin fotoğrafınla -->
+        <img src="https://via.placeholder.com/400x400" alt="Fatma Gül Demirbaş">
+      </div>
+      <div class="text">
+        <div class="section-title">About Me</div>
         <ul>
-            <li>🌍 I love traveling and exploring new cultures.</li>
-            <li>📸 Passionate about photography and capturing moments.</li>
-            <li>🍳 Master in cooking delicious meals.</li>
-            <li>📺 Guilty pleasure: Reality TV shows.</li>
-            <li>💻 Professional focus: Business Intelligence & Process Management.</li>
+          <li>I love traveling and discovering new cultures.</li>
+          <li>Photography is my way of capturing moments.</li>
+          <li>I’m quite a cooking master in my kitchen adventures.</li>
+          <li>Guilty pleasure: binge-watching reality shows 😅</li>
+          <li>I specialize in Business Intelligence & Process Management.</li>
         </ul>
-    </div>
-</section>
+      </div>
+    </section>
 
-<!-- Map Section -->
-<section class="section">
-    <h2 style="color: var(--accent-color); text-align:center;">My Journey</h2>
-    <div id="map"></div>
-</section>
+    <!-- JOURNEY / MAP -->
+    <section id="journey">
+      <div class="section-title">My Journey</div>
+      <div id="map"></div>
+    </section>
 
-<!-- Hobbies Section -->
-<section class="section hobbies">
-    <div class="hobby-card"><i class="fas fa-plane"></i><p>Traveling</p></div>
-    <div class="hobby-card"><i class="fas fa-camera"></i><p>Photography</p></div>
-    <div class="hobby-card"><i class="fas fa-utensils"></i><p>Cooking</p></div>
-    <div class="hobby-card"><i class="fas fa-tv"></i><p>Reality Shows</p></div>
-    <div class="hobby-card"><i class="fas fa-code"></i><p>Coding & Tech</p></div>
-</section>
+    <!-- HOBBIES / INTERESTS -->
+    <section id="interests">
+      <div class="section-title">What I Enjoy</div>
+      <div class="cards">
+        <div class="card"><h4>Travel</h4><p>Exploring the world, one country at a time.</p></div>
+        <div class="card"><h4>Photography</h4><p>Freezing moments through my lens.</p></div>
+        <div class="card"><h4>Cooking</h4><p>Creating delicious dishes is my therapy.</p></div>
+        <div class="card"><h4>Reality Shows</h4><p>Yes, I secretly love reality TV.</p></div>
+        <div class="card"><h4>Data & Process</h4><p>Turning complexity into clarity.</p></div>
+      </div>
+    </section>
 
-<!-- Contact Section -->
-<section class="contact">
-    <a href="#"><i class="fab fa-linkedin"></i></a>
-    <a href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i></a>
-</section>
+    <!-- CONTACT -->
+    <section class="contact">
+      <div class="section-title">Contact Me</div>
+      <p>
+        <a href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+        <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      </p>
+    </section>
 
-<footer>
-    © 2025 Fatma Gül Demirbaş. All Rights Reserved.
-</footer>
+    <footer>© 2025 Fatma Gül Demirbaş</footer>
+  </div>
 
-<!-- JS -->
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
-<script>
-// Map Initialization
-var map = L.map('map').setView([41.0, 28.9], 2);
+  <!-- Leaflet JS -->
+  <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
 
-// Tile Layer
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-    subdomains: 'abc'
-}).addTo(map);
+  <script>
+    // Initialize map
+    const map = L.map('map').setView([45, 10], 3);
 
-// Icons
-var icon = L.AwesomeMarkers.icon({icon: 'map-marker-alt', prefix: 'fa', markerColor: 'darkblue', iconColor: 'white'});
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+      subdomains: 'abc'
+    }).addTo(map);
 
-// Markers
-var locations = [
-    {lat:41.0082, lng:28.9784, title:'Istanbul, Turkey', desc:'Birthplace'},
-    {lat:39.9334, lng:32.8597, title:'Ankara, Turkey', desc:'Bachelor MIS 2019-2024'},
-    {lat:50.0755, lng:14.437, title:'Prague, Czech Republic', desc:'Erasmus Exchange 2023'},
-    {lat:52.52, lng:13.405, title:'Berlin, Germany', desc:'Master BIPM 2025-2027'}
-];
+    // Marker Icons (default)
+    const defaultIcon = L.icon({
+      iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.3/images/marker-icon.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41]
+    });
 
-locations.forEach(function(loc){
-    var marker = L.marker([loc.lat, loc.lng], {icon: icon}).addTo(map);
-    marker.bindPopup('<b>'+loc.title+'</b><br>'+loc.desc);
-    marker.bindTooltip(loc.title, {sticky:true});
-});
+    const locations = [
+      { coords: [41.0082, 28.9784], title: 'Istanbul, Turkey', desc: 'Origin' },
+      { coords: [39.9334, 32.8597], title: 'Ankara, Turkey', desc: 'Studied MIS (2019‑2024)' },
+      { coords: [50.0755, 14.437], title: 'Prague, Czech Republic', desc: 'Erasmus 2023' },
+      { coords: [52.52, 13.405], title: 'Berlin, Germany', desc: 'Master BIPM (2025‑2027)' }
+    ];
 
-// Lines
-var latlngs = locations.map(l => [l.lat, l.lng]);
-L.polyline(latlngs, {color:'cyan', weight:3, opacity:0.7}).addTo(map);
+    locations.forEach(loc => {
+      const marker = L.marker(loc.coords, { icon: defaultIcon }).addTo(map);
+      marker.bindPopup(`<strong>${loc.title}</strong><br>${loc.desc}`);
+      marker.bindTooltip(loc.title, { sticky: true });
+    });
 
-</script>
+    // Draw a polyline path
+    const latlngs = locations.map(l => l.coords);
+    L.polyline(latlngs, { color: varColor = '#0077cc', weight: 3, opacity: 0.6 }).addTo(map);
+  </script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
 </body>
 </html>
