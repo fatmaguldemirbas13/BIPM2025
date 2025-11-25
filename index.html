@@ -6,239 +6,239 @@
 <title>Fatma Gül Demirbaş — Personal Site</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
 <style>
-  :root {
-    --pink: #ff5f8f;
-    --yellow: #ffd84d;
-    --turq: #47d6c1;
-    --blue: #5d8bff;
-    --purple: #b47cff;
-    --orange: #ff8c42;
-  }
+  :root {
+    --pink: #ff5f8f;
+    --yellow: #ffd84d;
+    --turq: #47d6c1;
+    --blue: #5d8bff;
+    --purple: #b47cff;
+    --orange: #ff8c42;
+  }
 
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #fafafa;
-    color: #222;
-    scroll-behavior: smooth;
-  }
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #fafafa;
+    color: #222;
+    scroll-behavior: smooth;
+  }
 
-  header {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: linear-gradient(135deg, var(--pink), var(--yellow));
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
+  header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--pink), var(--yellow));
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
 
-  header img {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid rgba(255,255,255,0.6);
-    margin-bottom: 1.5rem;
-    transition: transform 0.5s;
-  }
-  header img:hover {
-    transform: scale(1.05);
-  }
+  header img {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid rgba(255,255,255,0.6);
+    margin-bottom: 1.5rem;
+    transition: transform 0.5s;
+  }
+  header img:hover {
+    transform: scale(1.05);
+  }
 
-  header h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3rem;
-    margin: 0;
-    animation: fadeIn 1.5s ease forwards;
-  }
+  header h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    margin: 0;
+    animation: fadeIn 1.5s ease forwards;
+  }
 
-  header p {
-    margin-top: 0.5rem;
-    font-size: 1.2rem;
-    opacity: 0;
-    max-width: 600px;
-    animation: fadeIn 1.5s 0.5s ease forwards;
-  }
+  header p {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    opacity: 0;
+    max-width: 600px;
+    animation: fadeIn 1.5s 0.5s ease forwards;
+  }
 
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
 
-  nav {
-    background: white;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    border-bottom: 1px solid #eee;
-    transition: background 0.3s;
-  }
-  nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
-    transition: 0.3s;
-  }
-  nav a:hover { color: var(--blue); }
+  nav {
+    background: white;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: 1px solid #eee;
+    transition: background 0.3s;
+  }
+  nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+  nav a:hover { color: var(--blue); }
 
-  section {
-    padding: 5rem 2rem;
-    max-width: 900px;
-    margin: auto;
-  }
+  section {
+    padding: 5rem 2rem;
+    max-width: 900px;
+    margin: auto;
+  }
 
-  h2 {
-    font-size: 2.5rem;
-    font-family: 'Montserrat', sans-serif;
-    margin-bottom: 1rem;
-  }
+  h2 {
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1rem;
+  }
 
-  .color-block {
-    padding: 3rem;
-    border-radius: 20px;
-    color: white;
-    margin-bottom: 2rem;
-    transition: transform 0.3s;
-  }
-  .color-block:hover { transform: translateY(-5px); }
+  .color-block {
+    padding: 3rem;
+    border-radius: 20px;
+    color: white;
+    margin-bottom: 2rem;
+    transition: transform 0.3s;
+  }
+  .color-block:hover { transform: translateY(-5px); }
 
-  .about { background: var(--turq); }
-  .travel { background: var(--blue); }
-  .projects { background: var(--purple); }
-  .friends { background: var(--yellow); color:#000; }
-  .erasmus { background: var(--pink); }
-  .unfpa { background: var(--orange); }
+  .about { background: var(--turq); }
+  .travel { background: var(--blue); }
+  .projects { background: var(--purple); }
+  .friends { background: var(--yellow); color:#000; }
+  .erasmus { background: var(--pink); }
+  .unfpa { background: var(--orange); }
 
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-  }
-  .photo-grid img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 12px;
-    transition: transform 0.3s, filter 0.3s;
-    filter: grayscale(15%);
-  }
-  .photo-grid img:hover {
-    transform: scale(1.05);
-    filter: grayscale(0%);
-  }
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+  }
+  .photo-grid img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s, filter 0.3s;
+    filter: grayscale(15%);
+  }
+  .photo-grid img:hover {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+  }
 
-  footer {
-    text-align: center;
-    padding: 2rem;
-    margin-top: 4rem;
-    background: #111;
-    color: white;
-    font-size: 0.9rem;
-  }
+  footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    background: #111;
+    color: white;
+    font-size: 0.9rem;
+  }
 
-  @media(max-width:700px){
-    .photo-grid img { height: 140px; }
-  }
+  @media(max-width:700px){
+    .photo-grid img { height: 140px; }
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <img src="WhatsApp Image 2025-11-25 at 22.45.14.jpeg" alt="Fatma Photo" />
-  <h1>Fatma Gül Demirbaş</h1>
-  <p>Travel lover • Data & Project Enthusiast • Always exploring, learning and creating.</p>
+  <img src="WhatsApp Image 2025-11-25 at 22.45.14.jpeg" alt="Fatma Photo" />
+  <h1>Fatma Gül Demirbaş</h1>
+  <p>Travel lover • Data & Project Enthusiast • Always exploring, learning and creating.</p>
 </header>
 
 <nav>
-  <a href="#about">About</a>
-  <a href="#travel">Travel</a>
-  <a href="#friends">Friends</a>
-  <a href="#erasmus">Erasmus</a>
-  <a href="#unfpa">UNFPA</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
+  <a href="#about">About</a>
+  <a href="#travel">Travel</a>
+  <a href="#friends">Friends</a>
+  <a href="#erasmus">Erasmus</a>
+  <a href="#unfpa">UNFPA</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <section id="about">
-  <div class="color-block about">
-    <h2>About Me</h2>
-    <p>Hi! I'm Fatma — born and raised in Istanbul, a city full of contrasts and colors. I love exploring new places, understanding human behavior, and building meaningful digital experiences. I enjoy baking, watching guilty-pleasure reality shows, and creating projects that connect people with technology in a simple, human way.</p>
-  </div>
+  <div class="color-block about">
+    <h2>About Me</h2>
+    <p>Hi! I'm Fatma — born and raised in Istanbul, a city full of contrasts and colors. I love exploring new places, understanding human behavior, and building meaningful digital experiences. I enjoy baking, watching guilty-pleasure reality shows, and creating projects that connect people with technology in a simple, human way.</p>
+  </div>
 </section>
 
 <section id="travel">
-  <div class="color-block travel">
-    <h2>Travel</h2>
-    <p>Traveling inspires me and opens my perspective. Here are some snapshots:</p>
-    <div class="photo-grid">
-      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (3).jpeg" alt="Travel 1" />
-      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (4).jpeg" alt="Travel 2" />
-      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (2).jpeg" alt="Travel 3" />
-    </div>
-  </div>
+  <div class="color-block travel">
+    <h2>Travel</h2>
+    <p>Traveling inspires me and opens my perspective. Here are some snapshots:</p>
+    <div class="photo-grid">
+      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (3).jpeg" alt="Travel 1" />
+      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (4).jpeg" alt="Travel 2" />
+      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (2).jpeg" alt="Travel 3" />
+    </div>
+  </div>
 </section>
 
 <section id="friends">
-  <div class="color-block friends">
-    <h2>Friends & Moments</h2>
-    <p>I love spending time with friends — laughing, exploring, and creating memories. Some moments captured:</p>
-    <div class="photo-grid">
-      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (1).jpeg" alt="Friends 1" />
-      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (3).jpeg" alt="Friends 2" />
-      <img src="WhatsApp Image 2025-11-25 at 22.45.15.jpeg" alt="Friends 3" />
-    </div>
-  </div>
+  <div class="color-block friends">
+    <h2>Friends & Moments</h2>
+    <p>I love spending time with friends — laughing, exploring, and creating memories. Some moments captured:</p>
+    <div class="photo-grid">
+      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (1).jpeg" alt="Friends 1" />
+      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (3).jpeg" alt="Friends 2" />
+      <img src="WhatsApp Image 2025-11-25 at 22.45.15.jpeg" alt="Friends 3" />
+    </div>
+  </div>
 </section>
 
 <section id="erasmus">
-  <div class="color-block erasmus">
-    <h2>Erasmus in Prague</h2>
-    <p>In 2023, I spent a semester in Prague as an Erasmus exchange student. It was inspiring to meet new people and adapt to a multicultural environment.</p>
-    <div class="photo-grid">
-      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (2).jpeg" alt="Prague 1" />
-      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (4).jpeg" alt="Prague 2" />
-      <img src="foto.jpeg" alt="Prague 3" />
-    </div>
-  </div>
+  <div class="color-block erasmus">
+    <h2>Erasmus in Prague</h2>
+    <p>In 2023, I spent a semester in Prague as an Erasmus exchange student. It was inspiring to meet new people and adapt to a multicultural environment.</p>
+    <div class="photo-grid">
+      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (2).jpeg" alt="Prague 1" />
+      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (4).jpeg" alt="Prague 2" />
+      <img src="foto.jpeg" alt="Prague 3" />
+    </div>
+  </div>
 </section>
 
 <section id="unfpa">
-  <div class="color-block unfpa">
-    <h2>UNFPA Experience</h2>
-    <p>At <strong>UNFPA Türkiye</strong>, I worked on digital projects addressing women’s health, safety, and empowerment, focusing on gender-based violence and reproductive health awareness. This experience strengthened my commitment to feminism and creating impactful technology.</p>
-    <div class="photo-grid">
-      <img src="images/unfpa_experience.jpeg" alt="UNFPA Experience" />
-    </div>
-  </div>
+  <div class="color-block unfpa">
+    <h2>UNFPA Experience</h2>
+    <p>At <strong>UNFPA Türkiye</strong>, I worked on digital projects addressing women’s health, safety, and empowerment, focusing on gender-based violence and reproductive health awareness. This experience strengthened my commitment to feminism and creating impactful technology.</p>
+    <div class="photo-grid">
+      <img src="images/unfpa_experience.jpeg" alt="UNFPA Experience" />
+    </div>
+  </div>
 </section>
 
 <section id="projects">
-  <div class="color-block projects">
-    <h2>Projects</h2>
-    <ul style="margin-top:1rem; line-height:1.7;">
-      <li><strong>AMBER App (UNFPA)</strong> — Research, content simplification, and feature improvement for a women’s health & safety mobile app.</li>
-      <li><strong>Data Warehousing Project</strong> — Designed fact/dimension tables and optimized ETL flows for global food waste datasets.</li>
-      <li><strong>ICT Support Projects</strong> — Documentation, inventory structuring, and system troubleshooting for organizational IT environments.</li>
-      <li><strong>Recruitment Analytics</strong> — Market research and evaluation of recruitment KPIs during my time abroad.</li>
-    </ul>
-  </div>
+  <div class="color-block projects">
+    <h2>Projects</h2>
+    <ul style="margin-top:1rem; line-height:1.7;">
+      <li><strong>AMBER App (UNFPA)</strong> — Research, content simplification, and feature improvement for a women’s health & safety mobile app.</li>
+      <li><strong>Data Warehousing Project</strong> — Designed fact/dimension tables and optimized ETL flows for global food waste datasets.</li>
+      <li><strong>ICT Support Projects</strong> — Documentation, inventory structuring, and system troubleshooting for organizational IT environments.</li>
+      <li><strong>Recruitment Analytics</strong> — Market research and evaluation of recruitment KPIs during my time abroad.</li>
+    </ul>
+  </div>
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
-  <p>You can reach me at <strong>dfatmagul72@gmail.com</strong></p>
+  <h2>Contact</h2>
+  <p>You can reach me at <strong>dfatmagul72@gmail.com</strong></p>
 </section>
 
 <footer>
-  © 2025 Fatma Gül Demirbaş — All rights reserved.
+  © 2025 Fatma Gül Demirbaş — All rights reserved.
 </footer>
 
 </body>
