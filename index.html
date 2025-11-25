@@ -78,7 +78,6 @@
     top: 0;
     z-index: 999;
     border-bottom: 1px solid #eee;
-    transition: background 0.3s;
   }
   nav a {
     text-decoration: none;
@@ -90,7 +89,7 @@
 
   section {
     padding: 5rem 2rem;
-    max-width: 900px;
+    max-width: 1000px;
     margin: auto;
   }
 
@@ -118,22 +117,62 @@
 
   .photo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
     margin-top: 20px;
   }
+
   .photo-grid img {
     width: 100%;
-    height: 180px;
+    height: 250px;
     object-fit: cover;
     border-radius: 12px;
     transition: transform 0.3s, filter 0.3s;
-    filter: grayscale(15%);
+    cursor: pointer;
+    filter: grayscale(10%);
   }
   .photo-grid img:hover {
     transform: scale(1.05);
     filter: grayscale(0%);
   }
+
+  /* Modal */
+  .modal {
+    display: none; 
+    position: fixed; 
+    z-index: 9999; 
+    padding-top: 60px; 
+    left: 0; top: 0;
+    width: 100%; height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.9);
+  }
+  .modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+  }
+  .modal-content, .close {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+  @keyframes zoom {
+    from {transform: scale(0.1);} 
+    to {transform: scale(1);}
+  }
+  .close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+  }
+  .close:hover { color: #bbb; }
 
   footer {
     text-align: center;
@@ -145,7 +184,7 @@
   }
 
   @media(max-width:700px){
-    .photo-grid img { height: 140px; }
+    .photo-grid img { height: 180px; }
   }
 </style>
 </head>
@@ -170,8 +209,10 @@
 <section id="about">
   <div class="color-block about">
     <h2>About Me</h2>
-    <p>Hi! I'm Fatma — born in İstanbul and raised in Ankara, a city full of contrasts and colors. I love exploring new places, making friends from all around the world, and building meaningful digital experiences. I enjoy baking, watching guilty-pleasure reality shows, and creating projects that connect people with technology in a simple, human way.</p>
-  <img src="0a1fb41b-4e9b-4c04-a44e-bfab027d8833.JPG" alt="Travel 1" />
+    <p>Hi! I'm Fatma — born in İstanbul and raised in Ankara. I love exploring new places, making friends globally, and building meaningful digital experiences. I enjoy baking, watching guilty-pleasure reality shows, and creating projects connecting people with technology.</p>
+    <div class="photo-grid">
+      <img src="0a1fb41b-4e9b-4c04-a44e-bfab027d8833.JPG" alt="About Me Photo" class="modal-trigger"/>
+    </div>
   </div>
 </section>
 
@@ -180,9 +221,9 @@
     <h2>Travel</h2>
     <p>Traveling inspires me and opens my perspective. Here are some snapshots:</p>
     <div class="photo-grid">
-      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (3).jpeg" alt="Travel 1" />
-      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (4).jpeg" alt="Travel 2" />
-      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (2).jpeg" alt="Travel 3" />
+      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (3).jpeg" alt="Travel 1" class="modal-trigger"/>
+      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (4).jpeg" alt="Travel 2" class="modal-trigger"/>
+      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (2).jpeg" alt="Travel 3" class="modal-trigger"/>
     </div>
   </div>
 </section>
@@ -192,9 +233,9 @@
     <h2>Friends & Moments</h2>
     <p>I love spending time with friends — laughing, exploring, and creating memories. Some moments captured:</p>
     <div class="photo-grid">
-      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (1).jpeg" alt="Friends 1" />
-      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (3).jpeg" alt="Friends 2" />
-      <img src="WhatsApp Image 2025-11-25 at 22.45.15.jpeg" alt="Friends 3" />
+      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (1).jpeg" alt="Friends 1" class="modal-trigger"/>
+      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (3).jpeg" alt="Friends 2" class="modal-trigger"/>
+      <img src="WhatsApp Image 2025-11-25 at 22.45.15.jpeg" alt="Friends 3" class="modal-trigger"/>
     </div>
   </div>
 </section>
@@ -204,9 +245,9 @@
     <h2>Erasmus in Prague</h2>
     <p>In 2023, I spent a semester in Prague as an Erasmus exchange student. It was inspiring to meet new people and adapt to a multicultural environment.</p>
     <div class="photo-grid">
-      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (2).jpeg" alt="Prague 1" />
-      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (4).jpeg" alt="Prague 2" />
-      <img src="foto.jpeg" alt="Prague 3" />
+      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (2).jpeg" alt="Prague 1" class="modal-trigger"/>
+      <img src="WhatsApp Image 2025-11-25 at 22.45.14 (4).jpeg" alt="Prague 2" class="modal-trigger"/>
+      <img src="foto.jpeg" alt="Prague 3" class="modal-trigger"/>
     </div>
   </div>
 </section>
@@ -216,7 +257,7 @@
     <h2>UNFPA Experience</h2>
     <p>At <strong>UNFPA Türkiye</strong>, I worked on digital projects addressing women’s health, safety, and empowerment, focusing on gender-based violence and reproductive health awareness. This experience strengthened my commitment to feminism and creating impactful technology.</p>
     <div class="photo-grid">
-      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (1).jpeg" alt="UNFPA Experience" />
+      <img src="WhatsApp Image 2025-11-25 at 22.45.15 (1).jpeg" alt="UNFPA Experience" class="modal-trigger"/>
     </div>
   </div>
 </section>
@@ -237,9 +278,31 @@
   <p>You can reach me at <strong>dfatmagul72@gmail.com</strong></p>
 </section>
 
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="imgModal">
+</div>
+
 <footer>
   © 2025 Fatma Gül Demirbaş — All rights reserved.
 </footer>
+
+<script>
+  // Modal functionality
+  const modal = document.getElementById("myModal");
+  const modalImg = document.getElementById("imgModal");
+  const triggers = document.querySelectorAll(".modal-trigger");
+  triggers.forEach(img => {
+    img.onclick = () => {
+      modal.style.display = "block";
+      modalImg.src = img.src;
+    }
+  });
+  const closeBtn = document.getElementsByClassName("close")[0];
+  closeBtn.onclick = () => { modal.style.display = "none"; }
+  window.onclick = (e) => { if(e.target == modal) modal.style.display = "none"; }
+</script>
 
 </body>
 </html>
