@@ -3,22 +3,19 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Fatma Gül Demirbaş — My Journey</title>
+<title>Aurora Ruci — My Journey</title>
 
-<!-- Fonts & Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
 
-<!-- Leaflet -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
 
-<!-- Simple Reset + Modern Styles -->
 <style>
   :root{
     --bg:#f6f8fb;
     --card:#ffffff;
-    --primary:#0b6cff;
+    --primary:#8e44ad; /* Aurora ismine uygun morumsu bir renk seçtim */
     --muted:#6b7280;
     --glass: rgba(255,255,255,0.6);
     --radius:14px;
@@ -30,7 +27,7 @@
   img{max-width:100%;display:block}
   .wrap{max-width:var(--maxw);margin:36px auto;padding:24px}
   header.hero{
-    background:linear-gradient(180deg, rgba(11,108,255,0.08), rgba(11,108,255,0.02));
+    background:linear-gradient(180deg, rgba(142, 68, 173, 0.08), rgba(142, 68, 173, 0.02));
     border-radius:var(--radius);
     padding:48px;
     display:flex;
@@ -74,9 +71,9 @@
   /* contact */
   .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   @media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
-  .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--primary);color:white;border:none;font-weight:700;box-shadow:0 8px 18px rgba(11,108,255,0.14)}
+  .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--primary);color:white;border:none;font-weight:700;box-shadow:0 8px 18px rgba(142, 68, 173,0.14)}
   footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem;padding:24px}
-  
+   
   /* subtle entrance animation */
   .fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .6s ease forwards}
   .delay-1{animation-delay:0.08s}
@@ -88,38 +85,35 @@
 <body>
 
 <main class="wrap" role="main">
-  <!-- HERO -->
   <header class="hero fade-up">
     <div class="hero-left">
-      <h1>Hi — I’m <span style="color:var(--primary)">Fatma Gül Demirbaş</span>.</h1>
-      <p class="lead">I translate data into decisions. I work at the intersection of analytics, process design and product thinking — building systems that scale.</p>
+      <h1>Hi — I’m <span style="color:var(--primary)">Aurora Ruci</span>.</h1>
+      <p class="lead">Master Student in <strong>Business Intelligence & Process Management</strong>. I balance academic life with my role as a Working Student in Payroll & Controlling.</p>
       <div class="hero-meta">
         <div class="chip"><i class="fas fa-map-marker-alt"></i> Berlin, Germany</div>
-        <div class="chip"><i class="fas fa-briefcase"></i> Payroll & Controlling — Working Student</div>
-        <a class="chip" href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i> dfatmagul72@gmail.com</a>
+        <div class="chip"><i class="fas fa-building"></i> Iberdrola Deutschland GmbH</div>
+        <a class="chip" href="https://aouirora.github.io/"><i class="fab fa-github"></i> GitHub</a>
       </div>
     </div>
 
     <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
-      <img src="profile.jpg" alt="Fatma Gül Demirbaş" class="avatar" />
-      <a href="#" class="btn-primary" aria-label="Visit LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+      <img src="https://ui-avatars.com/api/?name=Aurora+Ruci&background=8e44ad&color=fff&size=200" alt="Aurora Ruci" class="avatar" />
+      <a href="https://www.linkedin.com/in/auroraruci/" target="_blank" class="btn-primary" aria-label="Visit LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
     </div>
   </header>
 
-  <!-- MAIN GRID -->
   <section class="grid">
 
-    <!-- LEFT: ABOUT + TIMELINE -->
     <div>
       <div class="card fade-up delay-1" style="margin-bottom:20px">
         <div class="section-title">
           <h2>About Me</h2>
         </div>
         <p class="muted">
-          I hold a Bachelor’s in Management Information Systems and I am currently pursuing a Master’s focused on business intelligence & process management. My background spans work across Turkey and Europe — from Ankara to Prague and now Berlin. I enjoy turning complex datasets into actionable insights and building workflows that empower teams.
+          My journey has taken me from Italy and Albania to Germany, with a sunny stop in Spain. I am currently studying at the Berlin School of Economics and Law. When I'm not analyzing processes or managing payroll, I'm likely reading epic fantasy, listening to music, or playing PvP games (very badly!).
         </p>
         <hr style="border:none;border-top:1px solid #f1f5ff;margin:16px 0">
-        <p class="muted"><strong>Specialties:</strong> Data Analysis · Process Improvement · SQL · Basic DevOps · Product Thinking · Stakeholder Communication</p>
+        <p class="muted"><strong>Likes:</strong> Food & Dining Out · Epic Fantasy Reading · Music · PvP Games</p>
       </div>
 
       <div class="card fade-up delay-2">
@@ -128,62 +122,79 @@
         </div>
 
         <div class="timeline" aria-label="Timeline of locations and milestones">
+          
           <div class="milestone" role="article">
             <div class="dot">I</div>
             <div class="meta">
-              <h3>Istanbul — Origin</h3>
-              <p class="muted">Where my multicultural perspective started and curiosity was born.</p>
+              <h3>Noventa Vicentina, Italy</h3>
+              <p class="muted"><strong>2000:</strong> Was born here. A very important accomplishment!</p>
             </div>
           </div>
 
           <div class="milestone" role="article">
-            <div class="dot">A</div>
+            <div class="dot" style="background:#e67e22">A</div>
             <div class="meta">
-              <h3>Ankara — Bachelor's (2019–2024)</h3>
-              <p class="muted">Management Information Systems — focused on data analytics and business systems.</p>
+              <h3>Durrës, Albania</h3>
+              <p class="muted"><strong>2008–2014:</strong> Completed Middle School years.</p>
             </div>
           </div>
 
           <div class="milestone" role="article">
-            <div class="dot">P</div>
+            <div class="dot">I</div>
             <div class="meta">
-              <h3>Prague — Erasmus (2023)</h3>
-              <p class="muted">International exchange that strengthened my cross-cultural collaboration skills.</p>
+              <h3>Noventa Vicentina, Italy</h3>
+              <p class="muted"><strong>2015–2020:</strong> High School Diploma.</p>
             </div>
           </div>
 
           <div class="milestone" role="article">
-            <div class="dot">B</div>
+            <div class="dot" style="background:#2980b9">B</div>
             <div class="meta">
-              <h3>Berlin — Master's (2025–2027)</h3>
-              <p class="muted">Advanced studies in business intelligence & process management while working in payroll and controlling.</p>
+              <h3>Berlin, Germany</h3>
+              <p class="muted"><strong>2021–2025:</strong> Bachelor’s in International Business Management.</p>
             </div>
           </div>
+
+          <div class="milestone" role="article">
+            <div class="dot" style="background:#e74c3c">S</div>
+            <div class="meta">
+              <h3>Alicante, Spain</h3>
+              <p class="muted"><strong>Jan–Jun 2024:</strong> Exchange Semester (The best part so far!).</p>
+            </div>
+          </div>
+
+          <div class="milestone" role="article">
+            <div class="dot" style="background:#8e44ad">M</div>
+            <div class="meta">
+              <h3>Berlin, Germany</h3>
+              <p class="muted"><strong>2025–Now:</strong> Master’s in Business Intelligence & Process Management.</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
 
-    <!-- RIGHT: MAP & CONTACT -->
     <aside>
       <div class="card fade-up delay-2" style="margin-bottom:18px">
         <div class="section-title"><h2>Journey Map</h2></div>
-        <div id="map" role="img" aria-label="Map showing Istanbul, Ankara, Prague and Berlin"></div>
+        <div id="map" role="img" aria-label="Map showing Italy, Albania, Germany and Spain"></div>
         <div class="map-legend" aria-hidden="false">
-          <div class="legend-item"><i class="fas fa-home"></i> Origin</div>
-          <div class="legend-item"><i class="fas fa-graduation-cap"></i> Studies</div>
-          <div class="legend-item"><i class="fas fa-plane"></i> Exchange</div>
-          <div class="legend-item"><i class="fas fa-city"></i> Current</div>
+          <div class="legend-item"><i class="fas fa-baby"></i> Origin</div>
+          <div class="legend-item"><i class="fas fa-school"></i> School</div>
+          <div class="legend-item"><i class="fas fa-university"></i> Studies</div>
+          <div class="legend-item"><i class="fas fa-sun"></i> Exchange</div>
         </div>
       </div>
 
       <div class="card fade-up delay-3">
         <div class="section-title"><h2>Contact</h2></div>
-        <p class="muted">I’m open to research collaborations, internships, and advising opportunities. Reach out via email or LinkedIn.</p>
+        <p class="muted">I'm currently based in Berlin. Feel free to check out my projects on GitHub or connect via LinkedIn.</p>
 
         <div class="contact-grid" style="margin-top:12px">
           <div>
-            <strong>Email</strong>
-            <p class="muted" style="margin-top:6px">dfatmagul72@gmail.com</p>
+            <strong>GitHub</strong>
+            <p class="muted" style="margin-top:6px"><a href="https://aouirora.github.io/">aouirora.github.io</a></p>
           </div>
           <div>
             <strong>Location</strong>
@@ -192,8 +203,8 @@
         </div>
 
         <div style="margin-top:18px;display:flex;gap:10px">
-          <a class="btn-primary" href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i> Email me</a>
-          <a class="btn-primary" href="#" style="background:#0f1724"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a class="btn-primary" href="https://www.linkedin.com/in/auroraruci/" target="_blank"><i class="fab fa-linkedin"></i> Connect</a>
+          <a class="btn-primary" href="https://aouirora.github.io/" target="_blank" style="background:#0f1724"><i class="fab fa-github"></i> Projects</a>
         </div>
       </div>
     </aside>
@@ -201,56 +212,62 @@
   </section>
 
   <footer>
-    © <strong>Fatma Gül Demirbaş</strong> — Built with ❤️ — Last updated 2025
+    © <strong>Aurora Ruci</strong> — Based on "Aurora's Story" — Last updated 2025
   </footer>
 </main>
 
-<!-- MAP SCRIPT -->
 <script>
-  // Initialize map
-  const map = L.map('map', { zoomControl: true }).setView([45, 10], 3);
+  // Initialize map centered roughly on Europe
+  const map = L.map('map', { zoomControl: true }).setView([47, 12], 4);
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
     attribution: '© OpenStreetMap contributors © CARTO'
   }).addTo(map);
 
-  // Helper for icons (FontAwesome markers via DivIcon)
-  function createIcon(html, bg='#0b6cff'){
+  // Helper for icons
+  function createIcon(html, bg='#8e44ad'){
     return L.divIcon({
-      html: '<div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:'+bg+';color:#fff;font-weight:700;font-size:14px">'+html+'</div>',
+      html: '<div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:'+bg+';color:#fff;font-weight:700;font-size:14px;box-shadow:0 2px 5px rgba(0,0,0,0.2)">'+html+'</div>',
       className: '',
       iconSize: [36,36],
-      iconAnchor: [18,18]
+      iconAnchor: [18,18],
+      popupAnchor: [0, -18]
     });
   }
 
-  // Markers
-  const ist = L.marker([41.0082, 28.9784], {icon:createIcon('I')}).addTo(map)
-    .bindPopup('<strong>Istanbul</strong><br>Origin');
+  // Markers based on Aurora's Story
+  // Noventa Vicentina, Italy
+  const italy = L.marker([45.2917, 11.5427], {icon:createIcon('I')}).addTo(map)
+    .bindPopup('<strong>Noventa Vicentina, Italy</strong><br>Born (2000) & High School (2015-2020)');
 
-  const ank = L.marker([39.9334, 32.8597], {icon:createIcon('A','#0bbf7a')}).addTo(map)
-    .bindPopup('<strong>Ankara</strong><br>Bachelor (2019–2024)');
+  // Durrës, Albania
+  const albania = L.marker([41.3246, 19.4565], {icon:createIcon('A', '#e67e22')}).addTo(map)
+    .bindPopup('<strong>Durrës, Albania</strong><br>Middle School (2008-2014)');
 
-  const prg = L.marker([50.0755, 14.437], {icon:createIcon('P','#ff6b6b')}).addTo(map)
-    .bindPopup('<strong>Prague</strong><br>Erasmus (2023)');
+  // Berlin, Germany
+  const berlin = L.marker([52.52, 13.405], {icon:createIcon('B', '#2980b9')}).addTo(map)
+    .bindPopup('<strong>Berlin, Germany</strong><br>Bachelor & Master (Current)');
 
-  const ber = L.marker([52.52, 13.405], {icon:createIcon('B','#6b5cff')}).addTo(map)
-    .bindPopup('<strong>Berlin</strong><br>Master (2025–2027)');
+  // Alicante, Spain
+  const spain = L.marker([38.3452, -0.4810], {icon:createIcon('S', '#e74c3c')}).addTo(map)
+    .bindPopup('<strong>Alicante, Spain</strong><br>Exchange Semester (2024)');
 
-  // Path lines
-  L.polyline([[41.0082, 28.9784],[39.9334,32.8597],[50.0755,14.437],[52.52,13.405]], {color:'#0b6cff',weight:3,opacity:0.6}).addTo(map);
+  // Path lines: Italy -> Albania -> Italy -> Berlin -> Spain -> Berlin
+  const coords = [
+    [45.2917, 11.5427], // Italy (Birth)
+    [41.3246, 19.4565], // Albania
+    [45.2917, 11.5427], // Italy (HS)
+    [52.52, 13.405],    // Berlin (Bach)
+    [38.3452, -0.4810], // Alicante
+    [52.52, 13.405]     // Berlin (Master)
+  ];
 
-  // Fit bounds nicely
-  const group = L.featureGroup([ist,ank,prg,ber]);
-  map.fitBounds(group.getBounds().pad(0.8));
+  L.polyline(coords, {color:'#8e44ad', weight:3, opacity:0.6, dashArray: '5, 10'}).addTo(map);
 
-  // Accessibility: focus opening popup on keyboard navigation (basic)
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'm'){ // press 'm' to open map overview
-      map.invalidateSize();
-      map.fitBounds(group.getBounds().pad(0.6));
-    }
-  });
+  // Fit bounds to show all points
+  const group = L.featureGroup([italy, albania, berlin, spain]);
+  map.fitBounds(group.getBounds().pad(0.5));
+
 </script>
 
 </body>
