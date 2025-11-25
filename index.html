@@ -1,257 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Fatma Gül Demirbaş — My Journey</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fatma Gül Demirbaş</title>
 
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- Leaflet -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
-<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
-
-<!-- Simple Reset + Modern Styles -->
 <style>
-  :root{
-    --bg:#f6f8fb;
-    --card:#ffffff;
-    --primary:#0b6cff;
-    --muted:#6b7280;
-    --glass: rgba(255,255,255,0.6);
-    --radius:14px;
-    --maxw:1080px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#111;background:var(--bg);-webkit-font-smoothing:antialiased}
-  a{color:var(--primary);text-decoration:none}
-  img{max-width:100%;display:block}
-  .wrap{max-width:var(--maxw);margin:36px auto;padding:24px}
-  header.hero{
-    background:linear-gradient(180deg, rgba(11,108,255,0.08), rgba(11,108,255,0.02));
-    border-radius:var(--radius);
-    padding:48px;
-    display:flex;
-    gap:32px;
-    align-items:center;
-    box-shadow:0 10px 30px rgba(12,34,56,0.06);
-  }
-  .hero-left{flex:1;min-width:260px}
-  .avatar{
-    width:150px;height:150px;border-radius:20px;object-fit:cover;border:4px solid #fff;box-shadow:0 6px 22px rgba(12,34,56,0.12);background:linear-gradient(135deg,var(--primary),#2bb6ff)
-  }
+  :root {
+    /* Emily Lonetto tarzı renk paleti */
+    --bg-color: #fafafa; /* Kırık beyaz arka plan */
+    --text-color: #111111; /* Koyu siyah metin */
+    --link-color: #333333;
+    --accent-color: #555555; /* Tarihler ve yan metinler için gri */
+    --font-mono: 'Roboto Mono', monospace; /* Başlıklar için */
+    --font-sans: 'Inter', sans-serif; /* Gövde metni için */
+    --max-width: 680px; /* İçerik genişliği dar tutulur */
+  }
 
-  h1{font-weight:800;margin:0 0 8px 0;font-size:clamp(24px,4.5vw,40px);line-height:1.02}
-  p.lead{margin:0;color:var(--muted);font-size:1.05rem}
-  .hero-meta{margin-top:18px;color:var(--muted);font-weight:600;display:flex;gap:18px;flex-wrap:wrap}
-  .chip{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;background:var(--card);border-radius:999px;box-shadow:0 4px 12px rgba(11,108,255,0.06);font-weight:600;color:#123}
+  * {
+    box-sizing: border-box;
+  }
 
-  /* grid */
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
-  @media (max-width:900px){ .grid{grid-template-columns:1fr} .hero{flex-direction:column;align-items:flex-start} .avatar{border-radius:50%} }
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  /* card */
-  .card{background:var(--card);padding:22px;border-radius:12px;box-shadow:0 8px 24px rgba(12,34,56,0.06)}
-  .section-title{display:flex;align-items:center;gap:12px;margin:0 0 14px 0}
-  .section-title h2{margin:0;font-size:1.25rem;color:var(--primary)}
-  .muted{color:var(--muted);font-size:0.95rem}
+  /* Ana Konteyner */
+  .container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
 
-  /* timeline */
-  .timeline{display:flex;flex-direction:column;gap:12px}
-  .milestone{display:flex;gap:14px;padding:14px;border-radius:10px;border:1px solid #f0f3ff;background:linear-gradient(180deg,rgba(11,108,255,0.02),transparent)}
-  .milestone .dot{width:46px;height:46px;border-radius:10px;background:var(--primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;flex-shrink:0}
-  .milestone .meta{flex:1}
-  .milestone h3{margin:0;font-size:1rem}
-  .milestone p{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
+  /* Tipografi ve Linkler */
+  h1 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
 
-  /* map */
-  #map{height:420px;border-radius:10px;overflow:hidden;border:1px solid #e6eefc}
-  .map-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-  .legend-item{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;background:var(--card);border-radius:999px;border:1px solid #f3f6ff;color:var(--muted)}
+  h2 {
+    font-family: var(--font-mono); /* Alt başlıklar monospace */
+    font-weight: 500;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-color);
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eaeaea;
+  }
 
-  /* contact */
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-  @media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
-  .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--primary);color:white;border:none;font-weight:700;box-shadow:0 8px 18px rgba(11,108,255,0.14)}
-  footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem;padding:24px}
-  
-  /* subtle entrance animation */
-  .fade-up{opacity:0;transform:translateY(10px);animation:fadeUp .6s ease forwards}
-  .delay-1{animation-delay:0.08s}
-  .delay-2{animation-delay:0.16s}
-  .delay-3{animation-delay:0.24s}
-  @keyframes fadeUp{to{opacity:1;transform:none}}
+  p.intro {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-top: 0;
+  }
+
+  a {
+    color: var(--link-color);
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  a:hover {
+    border-bottom-color: #000;
+    color: #000;
+  }
+
+  /* Listeler (Şu Anda bölümü için) */
+  ul.current-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul.current-list li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  ul.current-list li::before {
+    content: '→'; /* Ok işareti */
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-family: var(--font-mono);
+  }
+
+  /* Geçmiş Deneyimler Listesi */
+  .experience-item {
+    margin-bottom: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .experience-item .role {
+    font-weight: 600;
+  }
+
+  .experience-item .date {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    flex-shrink: 0;
+    margin-left: 20px;
+  }
+  
+  /* Fotoğraf Galerisi (Ekstra İstek) */
+  .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+  }
+  .photo-grid img {
+      width: 100%;
+      height: 150px; /* Tüm fotoları aynı yükseklikte tutar */
+      object-fit: cover;
+      border-radius: 4px;
+      filter: grayscale(20%); /* Hafif siyah beyaz tonlama, sitenin havasına uyması için */
+      transition: filter 0.3s;
+  }
+  .photo-grid img:hover {
+      filter: grayscale(0%); /* Üzerine gelince renklenir */
+  }
+
+  /* Alt Bilgi / İletişim */
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 2px solid #eaeaea;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    display: flex;
+    gap: 20px;
+  }
+
+  @media (max-width: 600px) {
+      .experience-item {
+          flex-direction: column;
+      }
+      .experience-item .date {
+          margin-left: 0;
+          margin-top: 4px;
+      }
+      .photo-grid {
+          grid-template-columns: repeat(2, 1fr); /* Mobilde 2 sütun */
+      }
+  }
 </style>
 </head>
 <body>
 
-<main class="wrap" role="main">
-  <!-- HERO -->
-  <header class="hero fade-up">
-    <div class="hero-left">
-      <h1>Hi — I’m <span style="color:var(--primary)">Fatma Gül Demirbaş</span>.</h1>
-      <p class="lead">I translate data into decisions. I work at the intersection of analytics, process design and product thinking — building systems that scale.</p>
-      <div class="hero-meta">
-        <div class="chip"><i class="fas fa-map-marker-alt"></i> Berlin, Germany</div>
-        <div class="chip"><i class="fas fa-briefcase"></i> Payroll & Controlling — Working Student</div>
-        <a class="chip" href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i> dfatmagul72@gmail.com</a>
-      </div>
-    </div>
+<div class="container">
 
-    <div style="display:flex;flex-direction:column;align-items:center;gap:12px">
-      <img src="profile.jpg" alt="Fatma Gül Demirbaş" class="avatar" />
-      <a href="#" class="btn-primary" aria-label="Visit LinkedIn"><i class="fab fa-linkedin"></i> LinkedIn</a>
-    </div>
-  </header>
+  <header>
+    <h1>Fatma Gül Demirbaş</h1>
+    <p class="intro">
+      Veri ile kararlar arasında köprü kuruyorum. <br>
+      Berlin'de Business Intelligence & Süreç Yönetimi öğrencisi.
+    </p>
+  </header>
 
-  <!-- MAIN GRID -->
-  <section class="grid">
+  <section>
+    <h2>Şu Anda</h2>
+    <ul class="current-list">
+      <li>
+        <strong>HWR Berlin</strong>'de Business Intelligence & Process Management (M.Sc.) üzerine yüksek lisans yapıyorum. Veri analitiği ve iş süreçleri optimizasyonuna odaklanıyorum.
+      </li>
+      <li>
+        Berlin'de bir şirkette <strong>Payroll & Controlling</strong> alanında Working Student olarak çalışarak teorik bilgimi finansal süreçlerde pratiğe döküyorum.
+      </li>
+      <li>
+        Karmaşık veri setlerini SQL ve modern BI araçları ile anlamlı içgörülere dönüştürme üzerine projeler geliştiriyorum.
+      </li>
+    </ul>
+  </section>
 
-    <!-- LEFT: ABOUT + TIMELINE -->
-    <div>
-      <div class="card fade-up delay-1" style="margin-bottom:20px">
-        <div class="section-title">
-          <h2>About Me</h2>
-        </div>
-        <p class="muted">
-          I hold a Bachelor’s in Management Information Systems and I am currently pursuing a Master’s focused on business intelligence & process management. My background spans work across Turkey and Europe — from Ankara to Prague and now Berlin. I enjoy turning complex datasets into actionable insights and building workflows that empower teams.
-        </p>
-        <hr style="border:none;border-top:1px solid #f1f5ff;margin:16px 0">
-        <p class="muted"><strong>Specialties:</strong> Data Analysis · Process Improvement · SQL · Basic DevOps · Product Thinking · Stakeholder Communication</p>
-      </div>
+  <section>
+    <h2>Geçmişte</h2>
+    
+    <div class="experience-item">
+      <div>
+        <span class="role">Erasmus Değişim Programı</span>, Prag
+        <br><span style="font-size:0.9rem; color:var(--accent-color)">Uluslararası işbirliği ve kültürel adaptasyon üzerine odaklandım.</span>
+      </div>
+      <span class="date">2023</span>
+    </div>
 
-      <div class="card fade-up delay-2">
-        <div class="section-title">
-          <h2>Journey Timeline</h2>
-        </div>
+    <div class="experience-item">
+      <div>
+        <span class="role">Lisans Derecesi, Yönetim Bilişim Sistemleri</span>, Ankara
+        <br><span style="font-size:0.9rem; color:var(--accent-color)">Veri tabanı yönetimi ve sistem analizi temelleri.</span>
+      </div>
+      <span class="date">2019 — 2024</span>
+    </div>
 
-        <div class="timeline" aria-label="Timeline of locations and milestones">
-          <div class="milestone" role="article">
-            <div class="dot">I</div>
-            <div class="meta">
-              <h3>Istanbul — Origin</h3>
-              <p class="muted">Where my multicultural perspective started and curiosity was born.</p>
-            </div>
-          </div>
+    <div class="experience-item">
+      <div>
+        <span class="role">Başlangıç & Köken</span>, İstanbul
+      </div>
+      <span class="date">Origin</span>
+    </div>
 
-          <div class="milestone" role="article">
-            <div class="dot">A</div>
-            <div class="meta">
-              <h3>Ankara — Bachelor's (2019–2024)</h3>
-              <p class="muted">Management Information Systems — focused on data analytics and business systems.</p>
-            </div>
-          </div>
+  </section>
 
-          <div class="milestone" role="article">
-            <div class="dot">P</div>
-            <div class="meta">
-              <h3>Prague — Erasmus (2023)</h3>
-              <p class="muted">International exchange that strengthened my cross-cultural collaboration skills.</p>
-            </div>
-          </div>
+  <section>
+    <h2>Odak Alanları & Yetenekler</h2>
+    <p>
+      <a href="#">Veri Analizi & Görselleştirme</a>, 
+      <a href="#">SQL</a>, 
+      <a href="#">Süreç İyileştirme (Process Mining)</a>, 
+      <a href="#">Finansal Kontrol (Controlling)</a>,
+      <a href="#">Ürün Odaklı Düşünme</a>.
+    </p>
+  </section>
 
-          <div class="milestone" role="article">
-            <div class="dot">B</div>
-            <div class="meta">
-              <h3>Berlin — Master's (2025–2027)</h3>
-              <p class="muted">Advanced studies in business intelligence & process management while working in payroll and controlling.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section>
+    <h2>Kareler</h2>
+    <div class="photo-grid">
+        <img src="https://source.unsplash.com/random/400x300/?berlin,architecture" alt="Berlin'den bir kare">
+        <img src="https://source.unsplash.com/random/400x300/?prague,city" alt="Prag'dan bir anı">
+        <img src="https://source.unsplash.com/random/400x300/?data,work" alt="Çalışma ortamı">
+    </div>
+    <p style="font-size: 0.85rem; color: var(--accent-color);">Berlin, Prag ve çalışma hayatımdan kesitler.</p>
+  </section>
 
-    <!-- RIGHT: MAP & CONTACT -->
-    <aside>
-      <div class="card fade-up delay-2" style="margin-bottom:18px">
-        <div class="section-title"><h2>Journey Map</h2></div>
-        <div id="map" role="img" aria-label="Map showing Istanbul, Ankara, Prague and Berlin"></div>
-        <div class="map-legend" aria-hidden="false">
-          <div class="legend-item"><i class="fas fa-home"></i> Origin</div>
-          <div class="legend-item"><i class="fas fa-graduation-cap"></i> Studies</div>
-          <div class="legend-item"><i class="fas fa-plane"></i> Exchange</div>
-          <div class="legend-item"><i class="fas fa-city"></i> Current</div>
-        </div>
-      </div>
 
-      <div class="card fade-up delay-3">
-        <div class="section-title"><h2>Contact</h2></div>
-        <p class="muted">I’m open to research collaborations, internships, and advising opportunities. Reach out via email or LinkedIn.</p>
+  <footer>
+    <a href="mailto:dfatmagul72@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/senin-profilin" target="_blank">LinkedIn</a>
+  </footer>
 
-        <div class="contact-grid" style="margin-top:12px">
-          <div>
-            <strong>Email</strong>
-            <p class="muted" style="margin-top:6px">dfatmagul72@gmail.com</p>
-          </div>
-          <div>
-            <strong>Location</strong>
-            <p class="muted" style="margin-top:6px">Berlin, Germany</p>
-          </div>
-        </div>
-
-        <div style="margin-top:18px;display:flex;gap:10px">
-          <a class="btn-primary" href="mailto:dfatmagul72@gmail.com"><i class="fas fa-envelope"></i> Email me</a>
-          <a class="btn-primary" href="#" style="background:#0f1724"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        </div>
-      </div>
-    </aside>
-
-  </section>
-
-  <footer>
-    © <strong>Fatma Gül Demirbaş</strong> — Built with ❤️ — Last updated 2025
-  </footer>
-</main>
-
-<!-- MAP SCRIPT -->
-<script>
-  // Initialize map
-  const map = L.map('map', { zoomControl: true }).setView([45, 10], 3);
-
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '© OpenStreetMap contributors © CARTO'
-  }).addTo(map);
-
-  // Helper for icons (FontAwesome markers via DivIcon)
-  function createIcon(html, bg='#0b6cff'){
-    return L.divIcon({
-      html: '<div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:'+bg+';color:#fff;font-weight:700;font-size:14px">'+html+'</div>',
-      className: '',
-      iconSize: [36,36],
-      iconAnchor: [18,18]
-    });
-  }
-
-  // Markers
-  const ist = L.marker([41.0082, 28.9784], {icon:createIcon('I')}).addTo(map)
-    .bindPopup('<strong>Istanbul</strong><br>Origin');
-
-  const ank = L.marker([39.9334, 32.8597], {icon:createIcon('A','#0bbf7a')}).addTo(map)
-    .bindPopup('<strong>Ankara</strong><br>Bachelor (2019–2024)');
-
-  const prg = L.marker([50.0755, 14.437], {icon:createIcon('P','#ff6b6b')}).addTo(map)
-    .bindPopup('<strong>Prague</strong><br>Erasmus (2023)');
-
-  const ber = L.marker([52.52, 13.405], {icon:createIcon('B','#6b5cff')}).addTo(map)
-    .bindPopup('<strong>Berlin</strong><br>Master (2025–2027)');
-
-  // Path lines
-  L.polyline([[41.0082, 28.9784],[39.9334,32.8597],[50.0755,14.437],[52.52,13.405]], {color:'#0b6cff',weight:3,opacity:0.6}).addTo(map);
-
-  // Fit bounds nicely
-  const group = L.featureGroup([ist,ank,prg,ber]);
-  map.fitBounds(group.getBounds().pad(0.8));
-
-  // Accessibility: focus opening popup on keyboard navigation (basic)
-  document.addEventListener('keydown', (e) => {
-    if(e.key === 'm'){ // press 'm' to open map overview
-      map.invalidateSize();
-      map.fitBounds(group.getBounds().pad(0.6));
-    }
-  });
-</script>
+</div>
 
 </body>
-</html> (bu kodu bu sayfaya göre düzenler misin)
+</html>
