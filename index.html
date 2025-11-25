@@ -1,253 +1,168 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Fatma Gül Demirbaş</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fatma Gül Demirbaş — Personal Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fafafa;
+      color: #222;
+      scroll-behavior: smooth;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    /* --- GLOBAL COLORS --- */
+    :root {
+      --pink: #ff5f8f;
+      --yellow: #ffd84d;
+      --turq: #47d6c1;
+      --blue: #5d8bff;
+      --purple: #b47cff;
+    }
 
-<style>
-  :root {
-    /* Emily Lonetto tarzı renk paleti */
-    --bg-color: #fafafa; /* Kırık beyaz arka plan */
-    --text-color: #111111; /* Koyu siyah metin */
-    --link-color: #333333;
-    --accent-color: #555555; /* Tarihler ve yan metinler için gri */
-    --font-mono: 'Roboto Mono', monospace; /* Başlıklar için */
-    --font-sans: 'Inter', sans-serif; /* Gövde metni için */
-    --max-width: 680px; /* İçerik genişliği dar tutulur */
-  }
+    header {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--pink), var(--yellow));
+      color: white;
+    }
 
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    padding: 40px 20px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: var(--font-sans);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* Ana Konteyner */
-  .container {
-    max-width: var(--max-width);
-    margin: 0 auto;
-  }
-
-  /* Tipografi ve Linkler */
-  h1 {
-    font-family: var(--font-sans);
-    font-weight: 600;
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
-  }
-
-  h2 {
-    font-family: var(--font-mono); /* Alt başlıklar monospace */
-    font-weight: 500;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent-color);
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #eaeaea;
-  }
-
-  p.intro {
-    font-size: 1.1rem;
-    color: var(--accent-color);
-    margin-top: 0;
-  }
-
-  a {
-    color: var(--link-color);
-    text-decoration: none;
-    border-bottom: 1px solid #ddd;
-    transition: border-color 0.2s, color 0.2s;
-  }
-
-  a:hover {
-    border-bottom-color: #000;
-    color: #000;
-  }
-
-  /* Listeler (Şu Anda bölümü için) */
-  ul.current-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  ul.current-list li {
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
-    position: relative;
-  }
-
-  ul.current-list li::before {
-    content: '→'; /* Ok işareti */
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-    font-family: var(--font-mono);
-  }
-
-  /* Geçmiş Deneyimler Listesi */
-  .experience-item {
-    margin-bottom: 1.2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-
-  .experience-item .role {
-    font-weight: 600;
-  }
-
-  .experience-item .date {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--accent-color);
-    flex-shrink: 0;
-    margin-left: 20px;
-  }
-  
-  /* Fotoğraf Galerisi (Ekstra İstek) */
-  .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      margin-top: 2rem;
-      margin-bottom: 3rem;
-  }
-  .photo-grid img {
-      width: 100%;
-      height: 150px; /* Tüm fotoları aynı yükseklikte tutar */
+    header img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
       object-fit: cover;
-      border-radius: 4px;
-      filter: grayscale(20%); /* Hafif siyah beyaz tonlama, sitenin havasına uyması için */
-      transition: filter 0.3s;
-  }
-  .photo-grid img:hover {
-      filter: grayscale(0%); /* Üzerine gelince renklenir */
-  }
+      border: 5px solid rgba(255,255,255,0.6);
+      margin-bottom: 1.5rem;
+    }
 
-  /* Alt Bilgi / İletişim */
-  footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 2px solid #eaeaea;
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    display: flex;
-    gap: 20px;
-  }
+    header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      margin: 0;
+    }
 
-  @media (max-width: 600px) {
-      .experience-item {
-          flex-direction: column;
-      }
-      .experience-item .date {
-          margin-left: 0;
-          margin-top: 4px;
-      }
-      .photo-grid {
-          grid-template-columns: repeat(2, 1fr); /* Mobilde 2 sütun */
-      }
-  }
-</style>
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+    }
+
+    nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      border-bottom: 1px solid #eee;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--blue);
+    }
+
+    section {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 1rem;
+    }
+
+    .color-block {
+      padding: 3rem;
+      border-radius: 20px;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    .about { background: var(--turq); }
+    .travel { background: var(--blue); }
+    .projects { background: var(--purple); }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      background: #111;
+      color: white;
+      font-size: 0.9rem;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-
+  <!-- HERO / HOME -->
   <header>
+    <img src="YOURPHOTO.jpg" alt="Your Photo" />
     <h1>Fatma Gül Demirbaş</h1>
-    <p class="intro">
-      Veri ile kararlar arasında köprü kuruyorum. <br>
-      Berlin'de Business Intelligence & Süreç Yönetimi öğrencisi.
-    </p>
+    <p>Travel lover • Data & Project Enthusiast • Always exploring, learning and creating.</p>
   </header>
 
-  <section>
-    <h2>Şu Anda</h2>
-    <ul class="current-list">
-      <li>
-        <strong>HWR Berlin</strong>'de Business Intelligence & Process Management (M.Sc.) üzerine yüksek lisans yapıyorum. Veri analitiği ve iş süreçleri optimizasyonuna odaklanıyorum.
-      </li>
-      <li>
-        Berlin'de bir şirkette <strong>Payroll & Controlling</strong> alanında Working Student olarak çalışarak teorik bilgimi finansal süreçlerde pratiğe döküyorum.
-      </li>
-      <li>
-        Karmaşık veri setlerini SQL ve modern BI araçları ile anlamlı içgörülere dönüştürme üzerine projeler geliştiriyorum.
-      </li>
-    </ul>
+  <!-- NAVBAR -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#travel">Travel</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="color-block about">
+      <h2>About Me</h2>
+      <p>Hello! I'm Fatma — passionate about discovering new places, understanding people, and building meaningful digital experiences. I enjoy working on data-driven ideas, improving systems, and designing simple but colorful interfaces. I love exploring the world and learning how different cultures shape everyday life.</p>
+    </div>
   </section>
 
-  <section>
-    <h2>Geçmişte</h2>
-    
-    <div class="experience-item">
-      <div>
-        <span class="role">Erasmus Değişim Programı</span>, Prag
-        <br><span style="font-size:0.9rem; color:var(--accent-color)">Uluslararası işbirliği ve kültürel adaptasyon üzerine odaklandım.</span>
-      </div>
-      <span class="date">2023</span>
+  <!-- TRAVEL SECTION -->
+  <section id="travel">
+    <div class="color-block travel">
+      <h2>Travel</h2>
+      <p>Traveling is where I feel most alive. I love capturing stories, colors, and emotions from different cities around the world. Soon I will add my travel photos and favorite places here!</p>
     </div>
-
-    <div class="experience-item">
-      <div>
-        <span class="role">Lisans Derecesi, Yönetim Bilişim Sistemleri</span>, Ankara
-        <br><span style="font-size:0.9rem; color:var(--accent-color)">Veri tabanı yönetimi ve sistem analizi temelleri.</span>
-      </div>
-      <span class="date">2019 — 2024</span>
-    </div>
-
-    <div class="experience-item">
-      <div>
-        <span class="role">Başlangıç & Köken</span>, İstanbul
-      </div>
-      <span class="date">Origin</span>
-    </div>
-
   </section>
 
-  <section>
-    <h2>Odak Alanları & Yetenekler</h2>
-    <p>
-      <a href="#">Veri Analizi & Görselleştirme</a>, 
-      <a href="#">SQL</a>, 
-      <a href="#">Süreç İyileştirme (Process Mining)</a>, 
-      <a href="#">Finansal Kontrol (Controlling)</a>,
-      <a href="#">Ürün Odaklı Düşünme</a>.
-    </p>
-  </section>
-
-  <section>
-    <h2>Kareler</h2>
-    <div class="photo-grid">
-        <img src="https://source.unsplash.com/random/400x300/?berlin,architecture" alt="Berlin'den bir kare">
-        <img src="https://source.unsplash.com/random/400x300/?prague,city" alt="Prag'dan bir anı">
-        <img src="https://source.unsplash.com/random/400x300/?data,work" alt="Çalışma ortamı">
+  <!-- PROJECTS SECTION -->
+  <section id="projects">
+    <div class="color-block projects">
+      <h2>Projects</h2>
+      <p>Coming soon — my data dashboards, analysis work, humanitarian projects and creative side projects.</p>
     </div>
-    <p style="font-size: 0.85rem; color: var(--accent-color);">Berlin, Prag ve çalışma hayatımdan kesitler.</p>
   </section>
 
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>You can reach me at <strong>dfatmagul72@gmail.com</strong></p>
+  </section>
 
   <footer>
-    <a href="mailto:dfatmagul72@gmail.com">Email</a>
-    <a href="https://linkedin.com/in/senin-profilin" target="_blank">LinkedIn</a>
+    © 2025 Fatma Gül Demirbaş — All rights reserved.
   </footer>
-
-</div>
 
 </body>
 </html>
